@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles/tailwind.css";
 import "./styles/style.css";
 
 const App = () => {
