@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "serve -s build",
-    "dev": "yarn tw:build && yarn start",
+    "dev": "yarn tw:build && yarn react-scripts build",
     "build": "yarn tw:build && react-scripts build",
     "tw:build": "postcss src/styles/tailwind-import.css -o src/styles/tailwind.css"
   },
