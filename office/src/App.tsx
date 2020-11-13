@@ -4,7 +4,7 @@ import "./styles/tailwind.css";
 import "antd/dist/antd.css";
 
 const App = () => {
-  return <div></div>;
+  return <div>Office</div>;
 };
 
 export default App;
