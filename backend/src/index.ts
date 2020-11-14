@@ -1,4 +1,6 @@
-const express = require('express')
+import express from 'express'
+import {query} from './database'
+
 const app = express()
 const port = process.env.PORT || 3000
 
