@@ -4,7 +4,6 @@ const connectionString = process.env.DB_CONNECT || "postgresql://root:root@local
 
 const pool = new Pool({ connectionString })
 
-export const query = (text, params?, callback?) => {
-  console.log(pool)
-  // return pool.query(text, params, callback)
+export const query = async (text, value=[]) => {
+  return await pool.query(text,value)
 }
