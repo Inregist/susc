@@ -11,7 +11,7 @@ const CheckCase = () => {
   return (
     <div className="bg-gray-300 h-screen">
       
-      <Navbar/>CheckCase Page
+      <Navbar name="ตรวจสอบ"/>CheckCase Page
 
       <div className="mt-32 mb-8 flex justify-center text-xl">
         กรอกเลขบัตรประจำตัวประชาชนของคุณ

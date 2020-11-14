@@ -13,8 +13,8 @@ const Report = () => {
 
   return (
 
-    <div>
-      <Navbar/>
+    <div className="w-full">
+      <Navbar name="Report"/>
       Report Page
       <div className="p-8">
 
