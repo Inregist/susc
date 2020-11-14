@@ -10,7 +10,7 @@ const Home = () => {
     <div>
       <Navbar/>
 
-      <div className="bg-gray-300 p-2 h-screen">
+      <div className="bg-gray-300 p-4 h-screen">
         <a href="./search/" className="mb-2 flex justify-center">
           {/* <div className="absolute bottom-0 w-full flex justify-center pb-12">
             <div className="w-2/3 h-8 bg-white flex items-center">
