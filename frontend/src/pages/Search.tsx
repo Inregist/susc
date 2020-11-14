@@ -1,5 +1,6 @@
 import { Button } from "antd";
 import React, { useState } from "react";
+import Navbar from "../components/Navbar";
 
 const Search = () => {
   const [state, setState] = useState(false);
@@ -13,10 +14,18 @@ const Search = () => {
 
   return (
     <div>
-      <Button type="primary" loading={state} onClick={click}>
-        Click me!
-      </Button>
+      <Navbar/>
+      <div>
+        <Button type="primary" loading={state} onClick={click}>
+          Click me!
+        </Button>
+      
+
+
+
+      </div>
     </div>
+    
   );
 };
 
