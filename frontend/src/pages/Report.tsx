@@ -9,8 +9,6 @@ const Report = () => {
     console.log(e);
   };
 
-  
-
   return (
 
     <div>
