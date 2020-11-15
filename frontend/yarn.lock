@@ -2277,11 +2277,7 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-<<<<<<< HEAD
 antd@^4.8.2:
-=======
-antd@^4.7.3:
->>>>>>> 3fb271c13407f9996dfb7563461ec4550d23aa9c
   version "4.8.2"
   resolved "https://registry.yarnpkg.com/antd/-/antd-4.8.2.tgz#8cad882ddb5b18bafacd009cb0096f5b20c8a2f3"
   integrity sha512-qxagKsiPVO+2rcAdX8WA3TPqiv5TS4FDGoaETVgCCln3x7ap1nqHkBC+Fr3CSNg8MxwQ+6m5BSBLcs5uDQg0Qw==
@@ -9906,12 +9902,6 @@ rc-tree@^3.8.0, rc-tree@~3.11.0:
     rc-util "^5.0.0"
     rc-virtual-list "^3.0.1"
 
-<<<<<<< HEAD
-rc-trigger@^5.0.0, rc-trigger@^5.0.4, rc-trigger@~5.0.3:
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-5.0.8.tgz#91bc770d080ab0715aaf13b4af046f008eb6721b"
-  integrity sha512-0bgFw39CKWRC4l3eQrqXe0O/e+XgZW68tXVewU/FI3qGs3PWXlPPbInes2ZvTIka/mS5oqOfF7wC1NPwPfo+9w==
-=======
 rc-trigger@^5.0.0, rc-trigger@^5.0.4, rc-trigger@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-5.1.2.tgz#f0f89bba2318699e704492bddb20506ecd8f8916"
@@ -9927,7 +9917,6 @@ rc-trigger@~5.0.3:
   version "5.0.9"
   resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-5.0.9.tgz#6956c31ab1a2def65f0630957ea75bdaa4b2cc4c"
   integrity sha512-N+q/ur2dpJSPDWbZQ34ztpGorms1QIphtmFpxKE5z+wMJw2BIASkMDEfwHJ/ssvZQxScjQza0/eQ0CWUI0e+EQ==
->>>>>>> 3fb271c13407f9996dfb7563461ec4550d23aa9c
   dependencies:
     "@babel/runtime" "^7.11.2"
     classnames "^2.2.6"
