@@ -1,7 +1,14 @@
 import React from "react";
+import Navbar from "../components/Navbar";
+import Chart from '../components/Chart';
 
 const Statistic = () => {
-  return <div>Statistic Page</div>;
+  
+
+  return <div>
+    <Navbar name = "Statistic"/>
+    <Chart />
+  </div>;
 };
 
 export default Statistic;
