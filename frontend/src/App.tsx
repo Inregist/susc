@@ -12,15 +12,17 @@ import Report from "./pages/Report";
 
 const App = () => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/report-case" component={Report} />
-        <Route exact path="/check-case" component={CheckCase} />
-        <Route exact path="/statistic" component={Statistic} />
-        <Route exact path="/search" component={Search} />
-        <Route path="/" component={Home} />
-      </Switch>
-    </Router>
+    <div style={{background: "#fbfbfb"}}>
+      <Router>
+        <Switch>
+          <Route exact path="/report-case" component={Report} />
+          <Route exact path="/check-case" component={CheckCase} />
+          <Route exact path="/statistic" component={Statistic} />
+          <Route exact path="/search" component={Search} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </Router>
+    </div>
   );
 };
 

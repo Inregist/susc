@@ -14,7 +14,7 @@ const Search = () => {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar name="Search"/>
       <div>
         <Button type="primary" loading={state} onClick={click}>
           Click me!
