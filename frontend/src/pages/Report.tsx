@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { Form, Button, Radio, Input, Select, Upload } from "antd";
-import { UploadOutlined } from '@ant-design/icons';
+import { PlusOutlined } from "@ant-design/icons";
 
 const Report = () => {
   const layout = {
@@ -15,7 +15,7 @@ const Report = () => {
       <Navbar name="ร้องทุกข์" />
       <div className="p-8">
         <Form {...layout} layout="vertical">
-          <div className="mb-4 font-semibold" style={{ fontSize: 18 }}>
+          <div className="mb-4 font-semibold" style={{ fontSize: 16 }}>
             ข้อมูลผู้ร้องทุกข์
           </div>
           <Form.Item label="คำนำหน้าชื่อ" name="nameTitleCon" required>
@@ -57,11 +57,11 @@ const Report = () => {
           >
             <Input placeholder="อีเมล์" />
           </Form.Item>
-
-          <div className="mb-4 font-semibold" style={{ fontSize: 18 }}>
+          
+          <div className="mt-16 mb-4 font-semibold" style={{ fontSize: 16 }}>
             ข้อมูลผู้ขาย
           </div>
-          <Form.Item label="คำนำหน้าชื่อ" name="nameTitleCon" required>
+          <Form.Item label="คำนำหน้าชื่อ" name="nameTitleSeller" required>
             <Radio.Group>
               <Radio.Button value="1">นาย</Radio.Button>
               <Radio.Button value="2">นาง</Radio.Button>
@@ -72,7 +72,7 @@ const Report = () => {
             label="ชื่อ"
             required
             tooltip="มีนามสกุลข้างล่าง"
-            name="fNameCon"
+            name="fNameSeller"
           >
             <Input placeholder="ชื่อ" />
           </Form.Item>
@@ -80,16 +80,11 @@ const Report = () => {
             label="นามสกุล"
             required
             tooltip="นามสกุลตรงนี้"
-            name="lNameCon"
+            name="lNameSeller"
           >
             <Input placeholder="นามสกุล" />
           </Form.Item>
-          <Form.Item
-            label="สินค้า"
-            required
-            tooltip="สินค้าตรงนี้"
-            name="lNameCon"
-          >
+          <Form.Item label="สินค้า" required tooltip="สินค้าตรงนี้" name="item">
             <Input placeholder="สินค้า" />
           </Form.Item>
           <Form.Item label="ประเภทสินค้า" name="itemCate">
@@ -113,23 +108,26 @@ const Report = () => {
           <Form.Item
             label="เบอร์โทรศัพท์"
             tooltip="ไม่จำเป็นต้องกรอก"
-            name="phoneNoCon"
+            name="phoneNoSeller"
           >
             <Input placeholder="เบอร์โทรศัพท์" />
           </Form.Item>
           <Form.Item
             label="เลขบัญชี"
             tooltip="ไม่จำเป็นต้องกรอก"
-            name="emailCon"
+            name="accountSeller"
           >
             <Input placeholder="เลขบัญชี" />
           </Form.Item>
-          <Form.Item label="ยอดโอน" required name="emailCon">
+          <Form.Item label="ยอดโอน" required name="price">
             <Input placeholder="ยอดโอน" />
           </Form.Item>
           <Form.Item label="หลักฐานการโกง" required name="pic">
-            <Upload >
-              <Button icon={<UploadOutlined />}>Upload</Button>
+            <Upload listType="picture-card">
+              <div>
+                <PlusOutlined />
+                <div style={{ marginTop: 8 }}>Upload</div>
+              </div>
             </Upload>
           </Form.Item>
           <Form.Item label="รายละเอียดการโกง" required name="detail">
@@ -140,7 +138,26 @@ const Report = () => {
               autoSize={{ minRows: 2, maxRows: 6 }}
             />
           </Form.Item>
-          
+          <Form.Item
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              style={{
+                background: "#072A4B",
+                borderColor: "#072A4B",
+                width: "130px",
+                height: "46px",
+                borderRadius: "8px",
+              }}
+              type="primary"
+              htmlType="submit"
+            >
+              <div style={{ fontSize: 16 }}>ส่งคำร้องทุกข์</div>
+            </Button>
+          </Form.Item>
         </Form>
       </div>
     </div>
