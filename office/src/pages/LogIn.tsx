@@ -41,7 +41,7 @@ const LogIn = () => {
                   className="w-full px-3 py-1 text-gray-700 bg-gray-200 rounded-lg focus:border-black "
                   name="password"
                   placeholder="******************"
-                  type="้password"
+                  type="password"
                   required
                 />
                 <div className="flex justify-center">
