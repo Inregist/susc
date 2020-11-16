@@ -1,12 +1,37 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import { Pie } from "react-chartjs-2";
-import { Menu, Dropdown, Checkbox, Tabs } from "antd";
+import { Pie, Bar } from "react-chartjs-2";
+import { Menu, Dropdown, Checkbox, Tabs, Button, Radio, List } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 const Statistic = () => {
-  const [showCat, setShowCat] = useState(false);
-  const [showPlatform, setShowPlatform] = useState(false);
+  const [showCatGraph, setShowCatGraph] = useState(false);
+  const [showPlatformGraph, setShowPlatformGraph] = useState(false);
+  const [showCatReport, setShowCatReport] = useState(false);
+  const [showPlatformReport, setShowPlatformReport] = useState(false);
+
+  const dataMock = [
+    {
+      title: "ชื่อ",
+      value: "จำนวนครั้งที่ถูกแจ้ง",
+    },
+    {
+      title: "นางป๋อง แป๋ง",
+      value: 100,
+    },
+    {
+      title: "นางสาวเกด ดาดาจิ",
+      value: 50,
+    },
+    {
+      title: "นางสาวน้ำปูน จิจิดา",
+      value: 30,
+    },
+    {
+      title: "นายทีปจิระ งามภักดี",
+      value: 30,
+    },
+  ];
 
   const [selectedCat, setSelectedCat] = useState([
     { name: "เครื่องสำอาง", check: false },
@@ -23,28 +48,46 @@ const Statistic = () => {
     { name: "Shopee", check: false },
   ]);
 
-  const [chartData, setChartData] = useState({
+  const [chartPieData, setChartPieData] = useState({
     labels: [
-      "Boston",
-      "Worcester",
-      "Springfield",
-      "Lowell",
-      "Cambridge",
-      "New Bedford",
+      "เครื่องสำอาง",
+      "เครื่องใช้ในครัว",
+      "เสื้อผ้า",
+      "เครื่องใช้ไฟฟ้า",
+      "ของใช้สำนักงาน",
     ],
     datasets: [
       {
         label: "Population",
-        data: [617594, 181045, 153060, 106519, 105162, 95072],
+        data: [617594, 181045, 153060, 106519, 105162],
         backgroundColor: [
           "rgba(255, 99, 132, 0.6)",
           "rgba(54, 162, 235, 0.6)",
           "rgba(255, 206, 86, 0.6)",
           "rgba(75, 192, 192, 0.6)",
           "rgba(153, 102, 255, 0.6)",
-          "rgba(255, 159, 64, 0.6)",
-          "rgba(255, 99, 132, 0.6)",
         ],
+      },
+    ],
+  });
+
+  const [chartBarData, setChartBarData] = useState({
+    labels: ["Lazada", "Shopee", "Twitter", "Amazon"],
+    datasets: [
+      {
+        label: ["เสื้อ"],
+        data: [500, 150, 23, 50],
+        backgroundColor: "rgba(255, 99, 132, 0.6)",
+      },
+      {
+        label: "กางเกง",
+        data: [25, 48, 850, 27],
+        backgroundColor: "rgba(54, 162, 235, 0.6)",
+      },
+      {
+        label: "รถยนต์",
+        data: [100, 147, 30, 78],
+        backgroundColor: "rgba(255, 206, 86, 0.6)",
       },
     ],
   });
@@ -57,7 +100,7 @@ const Statistic = () => {
       {selectedCat.map((item) => (
         <Menu.Item key={item.name}>
           <Checkbox
-            onClick={() => setShowCat(true)}
+            onClick={() => setShowCatGraph(true)}
             onChange={(e) => {
               const newSelected: any = selectedCat.map(
                 (cat: { name: string; check: boolean }) => {
@@ -111,38 +154,106 @@ const Statistic = () => {
       <Navbar name="Statistic" />
       <Tabs size={"large"} centered>
         <Tabs.TabPane tab={<div>Graph</div>} key="1">
-          <Chart title="Pongpang" chartData={chartData} />
+          <div className="flex flex-row">
+            <Button type="text">Category</Button>
+            <Button type="text">Platform</Button>
+          </div>
+          <ChartPie title="" chartData={chartPieData} />
           <div className="flex justify-around items-center border-t border-gray-500 mt-10 h-12">
             <Dropdown
-              visible={showCat}
-              onVisibleChange={setShowCat}
+              visible={showCatGraph}
+              onVisibleChange={setShowCatGraph}
               overlay={menuCategory}
+              placement="bottomCenter"
             >
               <div>
                 Category <DownOutlined />
               </div>
             </Dropdown>
             <Dropdown
-              visible={showPlatform}
+              visible={showPlatformGraph}
               overlay={menuPlatform}
-              onVisibleChange={setShowPlatform}
+              onVisibleChange={setShowPlatformGraph}
+              placement="bottomCenter"
             >
               <div>
                 Platform <DownOutlined />
               </div>
             </Dropdown>
           </div>
+          <ChartBar title="" chartData={chartBarData} />
+          <div className="flex mb-4">
+            <Radio.Group>
+              <Radio value={1}>เดือน</Radio>
+              <Radio value={2}>ไตรมาส</Radio>
+              <Radio value={3}>ปี</Radio>
+            </Radio.Group>
+          </div>
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Report" key="2"></Tabs.TabPane>
+        <Tabs.TabPane tab="Report" key="2">
+          <div className="flex justify-around items-center border-t border-gray-200 mt-5 h-10">
+            <Dropdown
+              visible={showCatReport}
+              onVisibleChange={setShowCatReport}
+              overlay={menuCategory}
+              placement="bottomCenter"
+            >
+              <div>
+                Category <DownOutlined />
+              </div>
+            </Dropdown>
+            <Dropdown
+              visible={showPlatformReport}
+              overlay={menuPlatform}
+              onVisibleChange={setShowPlatformReport}
+              placement="bottomCenter"
+            >
+              <div>
+                Platform <DownOutlined />
+              </div>
+            </Dropdown>
+          </div>
+          <List
+            style = {{padding: 30}}
+            itemLayout="horizontal"
+            dataSource={dataMock}
+            renderItem={(item) => (
+              <List.Item>
+                <List.Item.Meta title={item.title}/>
+                <div>{item.value}</div>
+              </List.Item>
+            )}
+            />
+        </Tabs.TabPane>
       </Tabs>
     </div>
   );
 };
 
-const Chart = ({ chartData, title }) => {
+const ChartPie = ({ chartData, title }) => {
   return (
     <div className="chart">
       <Pie
+        data={chartData}
+        options={{
+          title: {
+            display: true,
+            text: title,
+          },
+          legend: {
+            display: true,
+            position: "right",
+          },
+        }}
+      />
+    </div>
+  );
+};
+
+const ChartBar = ({ chartData, title }) => {
+  return (
+    <div className="chart">
+      <Bar
         data={chartData}
         options={{
           title: {
