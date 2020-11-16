@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import { Bar } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
+import {
+  Menu,
+  Dropdown,
+  Row,
+  Col,
+  Divider,
+  Typography,
+  Checkbox,
+  Tabs,
+} from "antd";
+import { DownOutlined } from "@ant-design/icons";
 
 const Statistic = () => {
   const [chartData, setChartData] = useState({
@@ -32,15 +43,55 @@ const Statistic = () => {
   return (
     <div>
       <Navbar name="Statistic" />
-      <Chart title="Pongpang" chartData={chartData} />
+      <Tabs size={"large"}>
+        <Tabs.TabPane tab="Graph" key="1">
+          <Chart title="Pongpang" chartData={chartData} />
+          <Divider></Divider>
+          <Row>
+            <Col span={6}></Col>
+            <Col span={6}>
+              <Dropdown
+                overlay={menuCategory}
+                trigger={["click"]}
+              >
+                <a
+                  className="ant-dropdown-link"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  Category <DownOutlined />
+                </a>
+              </Dropdown>
+            </Col>
+            <Col span={6}>
+              <Dropdown
+                overlay={menuPlatform}
+                trigger={["click"]}
+              >
+                <a
+                  className="ant-dropdown-link"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  Platform <DownOutlined />
+                </a>
+              </Dropdown>
+            </Col>
+            <Col span={6}></Col>
+          </Row>
+        </Tabs.TabPane>
+        <Tabs.TabPane tab="Report" key="2"></Tabs.TabPane>
+      </Tabs>
     </div>
   );
 };
 
+function onChange(e) {
+  console.log(`checked = ${e.target.checked}`);
+}
+
 const Chart = ({ chartData, title }) => {
   return (
     <div className="chart">
-      <Bar
+      <Pie
         data={chartData}
         options={{
           title: {
@@ -56,5 +107,53 @@ const Chart = ({ chartData, title }) => {
     </div>
   );
 };
+
+const menuCategory = (
+  <Menu>
+    <Menu.Item>
+      <Checkbox disabled> เลือกประเภทสินค้า (ไม่เกิน 3 ชนิด) </Checkbox>
+    </Menu.Item>
+    <Menu.Item>
+      <Checkbox onChange={onChange}> เครื่องสำอาง </Checkbox>
+    </Menu.Item>
+    <Menu.Item>
+      <Checkbox onChange={onChange}> เสื้อผ้า </Checkbox>
+    </Menu.Item>
+    <Menu.Item>
+      <Checkbox onChange={onChange}> เครื่องใช้ไฟฟ้า </Checkbox>
+    </Menu.Item>
+    <Menu.Item>
+      <Checkbox onChange={onChange}> ของใช้ในครัว </Checkbox>
+    </Menu.Item>
+    <Menu.Item>
+      <Checkbox onChange={onChange}> ของใช้ในสำนักงาน </Checkbox>
+    </Menu.Item>
+  </Menu>
+);
+
+const menuPlatform = (
+  <Menu>
+    <Menu.Item>
+      <Checkbox disabled> เลือกแพลตฟอร์ม (ไม่เกิน 4 ชนิด) </Checkbox>
+    </Menu.Item>
+    <Menu.Item>
+      <Checkbox onChange={onChange}> eBay </Checkbox>
+    </Menu.Item>
+    <Menu.Item>
+      <Checkbox onChange={onChange}> Amazon </Checkbox>
+    </Menu.Item>
+    <Menu.Item>
+      <Checkbox onChange={onChange}> Twitter </Checkbox>
+    </Menu.Item>
+    <Menu.Item>
+      <Checkbox onChange={onChange}> Lazada </Checkbox>
+    </Menu.Item>
+    <Menu.Item>
+      <Checkbox onChange={onChange}> Shopee </Checkbox>
+    </Menu.Item>
+  </Menu>
+);
+
+const { Title } = Typography;
 
 export default Statistic;
