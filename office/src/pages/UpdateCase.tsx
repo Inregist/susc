@@ -1,14 +1,13 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import { Modal, Button } from 'antd';
+import { Modal } from "antd";
 
 const UpdateCase = () => {
-    return(
-        <div >
-            <Navbar name="ระบบจัดการข้อมูล"/>
-        </div>
-    );
-
+  return (
+    <Modal visible={true}>
+        588888
+    </Modal>
+  );
 };
+
 
 export default UpdateCase;

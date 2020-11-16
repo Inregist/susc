@@ -13,8 +13,8 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route exact path="/Login" component={LogIn} />
-          <Route exact path="/UpdateCase" component={UpdateCase} />
+          <Route exact path="/login" component={LogIn} />
+          <Route exact path="/update-case" component={UpdateCase} />
           <Route path="/" component={Main} />
         </Switch>
       </Router>
