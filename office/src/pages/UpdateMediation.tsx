@@ -58,12 +58,14 @@ const UpdateMediation = () => {
     >
       <div className="font-bold p-5">หมายเลขการไกล่เกลี่ย : C0020</div>
       <div className="flex justify-around  border-t border-gray-500 p-4">
-        <Table dataSource={dataSource} columns={columns}  />
+        <Table dataSource={dataSource} columns={columns} />
       </div>
       <div className="flex justify-start  border-t border-gray-500 pt-4 pb-px pl-4 pr-4">
-        <button className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-          เพิ่มเวลานัดหมาย
-        </button>
+        <a href="./add-time/">
+          <button className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+            เพิ่มเวลานัดหมาย
+          </button>
+        </a>
       </div>
     </Modal>
   );
