@@ -6,7 +6,7 @@ const Navbar = ({ name }) => {
   return (
     <>
       <div>
-        <div className="fixed w-full bg-blue-900 text-white text-xl h-16 flex items-center justify-between p-4">
+        <div className="w-full bg-blue-900 text-white text-xl h-16 flex items-center justify-between p-4">
           <a href="http://localhost:3000">
             <img src={back_prev} alt="back" className="mt-1 w-6 h-6" />
           </a>
@@ -16,7 +16,7 @@ const Navbar = ({ name }) => {
           </a>
         </div>
       </div>
-      <div className="h-16"></div>
+      <div className="h-4"></div>
     </>
   );
 };
