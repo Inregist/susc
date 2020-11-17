@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React,{useState} from "react";
 import { Modal } from "antd";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,12 +10,8 @@ const AddTime = () => {
     <Modal
       width={320}
       visible={show}
-      onCancel={() => {
-        setShow(false);
-      }}
-      onOk={() => {
-        setShow(false);
-      }}
+      cancelButtonProps={{ style: { display: 'none' } }}
+      okButtonProps={{ style: { display: 'none' } }}
     >
       <div className="md:font-bold  h-10 text-lg flex w-full flex justify-around  border-b border-gray-500 p-0.5">
         เพิ่มเวลานัดหมาย

@@ -9,7 +9,7 @@ import Main from "./pages/Main";
 import UpdateCase from "./pages/UpdateCase";
 import UpdateMediation from "./pages/UpdateMediation";
 import AddTime from "./pages/AddTime";
-
+import AddResult from "./pages/AddResult";
 function App() {
   return (
     <div>
@@ -19,6 +19,7 @@ function App() {
           <Route exact path="/update-case" component={UpdateCase} />
           <Route exact path="/update-mediation" component={UpdateMediation} />
           <Route exact path="/add-time" component={AddTime} />
+          <Route exact path="/add-result" component={AddResult} />
           <Route path="/" component={Main} />
         </Switch>
       </Router>

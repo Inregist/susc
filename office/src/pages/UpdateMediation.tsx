@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal, Table } from "antd";
 
 const UpdateMediation = () => {
-  const [show, setShow] = useState(true);
   const dataSource = [
     {
       key: "1",
@@ -21,9 +20,11 @@ const UpdateMediation = () => {
       order: "3",
       time: "25/12/2563",
       result: (
-        <button className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-          บันทึกผลการไกล่เกลี่ย
-        </button>
+        <a href="./add-result/">
+          <button className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+            บันทึกผลการไกล่เกลี่ย
+          </button>
+        </a>
       ),
     },
   ];
@@ -48,15 +49,11 @@ const UpdateMediation = () => {
   return (
     <Modal
       width={800}
-      visible={show}
-      onCancel={() => {
-        setShow(false);
-      }}
-      onOk={() => {
-        setShow(false);
-      }}
+      visible={true}
+      cancelButtonProps={{ style: { display: "none" } }}
+      okButtonProps={{ style: { display: "none" } }}
     >
-      <div className="font-bold p-5">หมายเลขการไกล่เกลี่ย : C0020</div>
+      <div className="font-bold p-5 text-xl">หมายเลขการไกล่เกลี่ย : C0020</div>
       <div className="flex justify-around  border-t border-gray-500 p-4">
         <Table dataSource={dataSource} columns={columns} />
       </div>
