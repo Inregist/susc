@@ -9,6 +9,7 @@ const Statistic = () => {
   const [showPlatformGraph, setShowPlatformGraph] = useState(false);
   const [showCatReport, setShowCatReport] = useState(false);
   const [showPlatformReport, setShowPlatformReport] = useState(false);
+  const [pieDisplay, setPieDisplay] = useState("cat");
 
   const dataMock = [
     {
@@ -48,7 +49,7 @@ const Statistic = () => {
     { name: "Shopee", check: false },
   ]);
 
-  const [chartPieData, setChartPieData] = useState({
+  const chartPieDataCat = {
     labels: [
       "เครื่องสำอาง",
       "เครื่องใช้ในครัว",
@@ -58,7 +59,7 @@ const Statistic = () => {
     ],
     datasets: [
       {
-        label: "Population",
+        label: "Category",
         data: [617594, 181045, 153060, 106519, 105162],
         backgroundColor: [
           "rgba(255, 99, 132, 0.6)",
@@ -69,7 +70,30 @@ const Statistic = () => {
         ],
       },
     ],
-  });
+  };
+
+  const chartPieDataPlat = {
+    labels: [
+      "Lazada",
+      "Amazon",
+      "Shopee",
+      "Twitter",
+      "eBay",
+    ],
+    datasets: [
+      {
+        label: "Platform",
+        data: [1, 1, 1, 5, 1],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.6)",
+          "rgba(54, 162, 235, 0.6)",
+          "rgba(255, 206, 86, 0.6)",
+          "rgba(75, 192, 192, 0.6)",
+          "rgba(153, 102, 255, 0.6)",
+        ],
+      },
+    ],
+  };
 
   const [chartBarData, setChartBarData] = useState({
     labels: ["Lazada", "Shopee", "Twitter", "Amazon"],
@@ -155,10 +179,12 @@ const Statistic = () => {
       <Tabs size={"large"} centered>
         <Tabs.TabPane tab={<div>Graph</div>} key="1">
           <div className="flex flex-row">
-            <Button type="text">Category</Button>
-            <Button type="text">Platform</Button>
+            <Radio.Group onChange={(e)=> {setPieDisplay(e.target.value); console.log(chartPieDataCat, chartPieDataPlat)}}>
+              <Radio.Button value="cat">Category</Radio.Button>
+              <Radio.Button value="plat">Platform</Radio.Button>
+            </Radio.Group>
           </div>
-          <ChartPie title="" chartData={chartPieData} />
+          <ChartPie title="" chartData={pieDisplay === "cat" ? chartPieDataCat : chartPieDataPlat} />
           <div className="flex justify-around items-center border-t border-gray-500 mt-10 h-12">
             <Dropdown
               visible={showCatGraph}
@@ -214,16 +240,16 @@ const Statistic = () => {
             </Dropdown>
           </div>
           <List
-            style = {{padding: 30}}
+            style={{ padding: 30 }}
             itemLayout="horizontal"
             dataSource={dataMock}
             renderItem={(item) => (
               <List.Item>
-                <List.Item.Meta title={item.title}/>
+                <List.Item.Meta title={item.title} />
                 <div>{item.value}</div>
               </List.Item>
             )}
-            />
+          />
         </Tabs.TabPane>
       </Tabs>
     </div>
