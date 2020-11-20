@@ -12,13 +12,13 @@ app.get('/', (req, res) => {
 })
 
 app.get('/clients', async (req, res) => {
-  const result = await query("select * from client")
+  const result = await query({ text: "select * from client" })
   res.send(result.rows)
 })
 
 app.post('/report', async (req, res) => {
   const { name, data } = req.body
-  const result = await query("insert into client values ($1, $2)", [name, data])
+  const result = await query({ text: "insert into client values ($1, $2)", values: [name, data] })
   res.send("added to db")
 })
 
