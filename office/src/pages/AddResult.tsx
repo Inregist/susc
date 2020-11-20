@@ -10,7 +10,7 @@ const AddResult = () => {
       cancelButtonProps={{ style: { display: "none" } }}
       okButtonProps={{ style: { display: "none" } }}
     >
-      <div className=" p-4 text-xl">การไกล่เกลี่ย : C0020 ครั้งที่ 2</div>
+      <div className=" p-4 text-xl font-bold">การไกล่เกลี่ย : C0020 ครั้งที่ 2</div>
       <div className="flex  border-t border-gray-500 pt-8 pb-4 pl-4 pr-4 font-bold">
         เวลานัดไกล่เกลี่ย
       </div>
