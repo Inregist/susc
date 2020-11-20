@@ -185,14 +185,18 @@ const Statistic = () => {
 
   const menuCategory = (
     <Menu>
-      <Menu.Item>
-        <Checkbox disabled> เลือกประเภทสินค้า (ไม่เกิน 3 ชนิด) </Checkbox>
-      </Menu.Item>
+      <Menu.Item>เลือกประเภทสินค้า (ไม่เกิน 3 ชนิด)</Menu.Item>
       {selectedCat.map((item) => (
         <Menu.Item key={item.name}>
           <Checkbox
+            checked={selectedCat.filter((c) => c.name === item.name)[0].check}
             onClick={() => setShowCatGraph(true)}
             onChange={(e) => {
+              const checkCnt = selectedCat.reduce(
+                (acc, s) => (s.check ? acc + 1 : acc),
+                0
+              );
+              if (checkCnt >= 3 && e.target.checked) return;
               const newSelected: any = selectedCat.map(
                 (cat: { name: string; check: boolean }) => {
                   return {
@@ -214,13 +218,19 @@ const Statistic = () => {
 
   const menuPlatform = (
     <Menu>
-      <Menu.Item>
-        <Checkbox disabled> เลือกแพลตฟอร์ม (ไม่เกิน 4 ชนิด) </Checkbox>
-      </Menu.Item>
+      <Menu.Item>เลือกแพลตฟอร์ม (ไม่เกิน 4 ชนิด)</Menu.Item>
       {selectedPlatForm.map((item) => (
         <Menu.Item key={item.name}>
           <Checkbox
+            checked={
+              selectedPlatForm.filter((c) => c.name === item.name)[0].check
+            }
             onChange={(e) => {
+              const checkCnt = selectedPlatForm.reduce(
+                (acc, s) => (s.check ? acc + 1 : acc),
+                0
+              );
+              if (checkCnt >= 3 && e.target.checked) return;
               const newSelected: any = selectedPlatForm.map(
                 (cat: { name: string; check: boolean }) => {
                   return {
@@ -241,11 +251,11 @@ const Statistic = () => {
   );
 
   return (
-    <div>
+    <div className="h-screen">
       <Navbar name="Statistic" />
       <Tabs size={"large"} centered>
-        <Tabs.TabPane tab={<div>Graph</div>} key="1">
-          <div className="flex flex-row">
+        <Tabs.TabPane tab="Graph" key="1">
+          <div className="flex justify-center">
             <Radio.Group
               onChange={(e) => {
                 setPieDisplay(e.target.value);
@@ -283,27 +293,29 @@ const Statistic = () => {
               </div>
             </Dropdown>
           </div>
-          <ChartBar
-            title=""
-            chartData={
-              barDisplay === "month"
-                ? chartBarDataMonth
-                : barDisplay === "quarter"
-                ? chartBarDataQuarter
-                : chartBarDataYear
-            }
-          />
-          <div className="flex mb-4">
-            <Radio.Group
-              defaultValue={"month"}
-              onChange={(e) => {
-                setBarDisplay(e.target.value);
-              }}
-            >
-              <Radio value="month">เดือน</Radio>
-              <Radio value="quarter">ไตรมาส</Radio>
-              <Radio value="year">ปี</Radio>
-            </Radio.Group>
+          <div className="px-4">
+            <ChartBar
+              title=""
+              chartData={
+                barDisplay === "month"
+                  ? chartBarDataMonth
+                  : barDisplay === "quarter"
+                  ? chartBarDataQuarter
+                  : chartBarDataYear
+              }
+            />
+            <div className="flex mb-4 justify-center">
+              <Radio.Group
+                defaultValue={"month"}
+                onChange={(e) => {
+                  setBarDisplay(e.target.value);
+                }}
+              >
+                <Radio value="month">เดือน</Radio>
+                <Radio value="quarter">ไตรมาส</Radio>
+                <Radio value="year">ปี</Radio>
+              </Radio.Group>
+            </div>
           </div>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Report" key="2">
@@ -360,7 +372,7 @@ const ChartPie = ({ chartData, title }) => {
             display: true,
             position: "right",
             labels: {
-              boxWidth: 10,
+              boxWidth: 20,
               fontSize: 10,
             },
           },
@@ -393,7 +405,5 @@ const ChartBar = ({ chartData, title }) => {
     </div>
   );
 };
-
-const Graph = () => {};
 
 export default Statistic;
