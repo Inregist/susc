@@ -10,6 +10,7 @@ const Statistic = () => {
   const [showCatReport, setShowCatReport] = useState(false);
   const [showPlatformReport, setShowPlatformReport] = useState(false);
   const [pieDisplay, setPieDisplay] = useState("cat");
+  const [barDisplay, setBarDisplay] = useState("bar");
 
   const dataMock = [
     {
@@ -73,13 +74,7 @@ const Statistic = () => {
   };
 
   const chartPieDataPlat = {
-    labels: [
-      "Lazada",
-      "Amazon",
-      "Shopee",
-      "Twitter",
-      "eBay",
-    ],
+    labels: ["Lazada", "Amazon", "Shopee", "Twitter", "eBay"],
     datasets: [
       {
         label: "Platform",
@@ -95,23 +90,95 @@ const Statistic = () => {
     ],
   };
 
-  const [chartBarData, setChartBarData] = useState({
-    labels: ["Lazada", "Shopee", "Twitter", "Amazon"],
+  const [chartBarDataMonth, setChartBarDataMonth] = useState({
+    labels: ["eBay", "Amazon", "Lazada", "Twitter", "Shopee"],
     datasets: [
       {
-        label: ["เสื้อ"],
-        data: [500, 150, 23, 50],
+        label: ["เครื่องสำอาง"],
+        data: [50, 150, 23, 50, 150],
         backgroundColor: "rgba(255, 99, 132, 0.6)",
       },
       {
-        label: "กางเกง",
-        data: [25, 48, 850, 27],
+        label: "เสื้อผ้า",
+        data: [25, 48, 250, 27, 114],
         backgroundColor: "rgba(54, 162, 235, 0.6)",
       },
       {
-        label: "รถยนต์",
-        data: [100, 147, 30, 78],
+        label: "เครื่องใช้ไฟฟ้า",
+        data: [100, 147, 30, 78, 50],
         backgroundColor: "rgba(255, 206, 86, 0.6)",
+      },
+      {
+        label: "ของใช้ในครัว",
+        data: [50, 127, 10, 98, 46],
+        backgroundColor: "rgba(255, 158, 86, 0.6)",
+      },
+      {
+        label: "ของใช้ในสำนักงาน",
+        data: [100, 45, 90, 48, 75],
+        backgroundColor: "rgba(255, 127, 74, 0.6)",
+      },
+    ],
+  });
+
+  const [chartBarDataQuarter, setChartBarDataQuarter] = useState({
+    labels: ["eBay", "Amazon", "Lazada", "Twitter", "Shopee"],
+    datasets: [
+      {
+        label: ["เครื่องสำอาง"],
+        data: [250, 100, 13, 50, 150],
+        backgroundColor: "rgba(255, 99, 132, 0.6)",
+      },
+      {
+        label: "เสื้อผ้า",
+        data: [25, 48, 850, 57, 114],
+        backgroundColor: "rgba(54, 162, 235, 0.6)",
+      },
+      {
+        label: "เครื่องใช้ไฟฟ้า",
+        data: [100, 167, 30, 78, 50],
+        backgroundColor: "rgba(255, 206, 86, 0.6)",
+      },
+      {
+        label: "ของใช้ในครัว",
+        data: [50, 127, 10, 78, 46],
+        backgroundColor: "rgba(255, 158, 86, 0.6)",
+      },
+      {
+        label: "ของใช้ในสำนักงาน",
+        data: [100, 46, 100, 41, 75],
+        backgroundColor: "rgba(255, 127, 74, 0.6)",
+      },
+    ],
+  });
+
+  const [chartBarDataYear, setChartBarDataYear] = useState({
+    labels: ["eBay", "Amazon", "Lazada", "Twitter", "Shopee"],
+    datasets: [
+      {
+        label: ["เครื่องสำอาง"],
+        data: [100, 150, 23, 50, 190],
+        backgroundColor: "rgba(255, 99, 132, 0.6)",
+      },
+      {
+        label: "เสื้อผ้า",
+        data: [25, 48, 880, 37, 114],
+        backgroundColor: "rgba(54, 162, 235, 0.6)",
+      },
+      {
+        label: "เครื่องใช้ไฟฟ้า",
+        data: [100, 177, 30, 78, 50],
+        backgroundColor: "rgba(255, 206, 86, 0.6)",
+      },
+      {
+        label: "ของใช้ในครัว",
+        data: [50, 127, 15, 98, 46],
+        backgroundColor: "rgba(255, 158, 86, 0.6)",
+      },
+      {
+        label: "ของใช้ในสำนักงาน",
+        data: [190, 45, 90, 69, 75],
+        backgroundColor: "rgba(255, 127, 74, 0.6)",
       },
     ],
   });
@@ -179,12 +246,21 @@ const Statistic = () => {
       <Tabs size={"large"} centered>
         <Tabs.TabPane tab={<div>Graph</div>} key="1">
           <div className="flex flex-row">
-            <Radio.Group onChange={(e)=> {setPieDisplay(e.target.value); console.log(chartPieDataCat, chartPieDataPlat)}}>
+            <Radio.Group
+              onChange={(e) => {
+                setPieDisplay(e.target.value);
+              }}
+            >
               <Radio.Button value="cat">Category</Radio.Button>
               <Radio.Button value="plat">Platform</Radio.Button>
             </Radio.Group>
           </div>
-          <ChartPie title="" chartData={pieDisplay === "cat" ? chartPieDataCat : chartPieDataPlat} />
+          <ChartPie
+            title=""
+            chartData={
+              pieDisplay === "cat" ? chartPieDataCat : chartPieDataPlat
+            }
+          />
           <div className="flex justify-around items-center border-t border-gray-500 mt-10 h-12">
             <Dropdown
               visible={showCatGraph}
@@ -207,12 +283,26 @@ const Statistic = () => {
               </div>
             </Dropdown>
           </div>
-          <ChartBar title="" chartData={chartBarData} />
+          <ChartBar
+            title=""
+            chartData={
+              barDisplay === "month"
+                ? chartBarDataMonth
+                : barDisplay === "quarter"
+                ? chartBarDataQuarter
+                : chartBarDataYear
+            }
+          />
           <div className="flex mb-4">
-            <Radio.Group>
-              <Radio value={1}>เดือน</Radio>
-              <Radio value={2}>ไตรมาส</Radio>
-              <Radio value={3}>ปี</Radio>
+            <Radio.Group
+              defaultValue={"month"}
+              onChange={(e) => {
+                setBarDisplay(e.target.value);
+              }}
+            >
+              <Radio value="month">เดือน</Radio>
+              <Radio value="quarter">ไตรมาส</Radio>
+              <Radio value="year">ปี</Radio>
             </Radio.Group>
           </div>
         </Tabs.TabPane>
@@ -269,6 +359,10 @@ const ChartPie = ({ chartData, title }) => {
           legend: {
             display: true,
             position: "right",
+            labels: {
+              boxWidth: 10,
+              fontSize: 10,
+            },
           },
         }}
       />
@@ -288,7 +382,11 @@ const ChartBar = ({ chartData, title }) => {
           },
           legend: {
             display: true,
-            position: "right",
+            position: "bottom",
+            labels: {
+              boxWidth: 10,
+              fontSize: 8,
+            },
           },
         }}
       />
