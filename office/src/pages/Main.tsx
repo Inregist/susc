@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Checkbox, Dropdown, Menu, Table, Tabs, Tag } from "antd";
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
@@ -280,19 +279,6 @@ const Main = () => {
           </Tabs.TabPane>
         </Tabs>
       </div>
-=======
-import React from "react";
-import { formatInput } from "../components/utils";
-
-const Main = () => {
-  return (
-    <div style={{ background: "#fbfbfb" }} className="h-screen p-24">
-      <input
-        type="text"
-        onChange={(e) => formatInput(e, "xxx-xxx-xxxx")}
-        className="border border-black"
-      />
->>>>>>> cf75c2f41e1e1bd11bb3825e5169e4470b4349e5
     </div>
   );
 };
