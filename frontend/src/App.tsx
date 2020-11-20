@@ -1,7 +1,7 @@
 import React from "react";
+import "antd/dist/antd.css";
 import "./styles/tailwind.css";
 import "./styles/style.css";
-import "antd/dist/antd.css";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
@@ -12,7 +12,7 @@ import Report from "./pages/Report";
 
 const App = () => {
   return (
-    <div style={{background: "#fbfbfb"}}>
+    <div style={{ background: "#fbfbfb" }}>
       <Router>
         <Switch>
           <Route exact path="/report-case" component={Report} />

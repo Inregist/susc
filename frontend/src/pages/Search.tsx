@@ -1,42 +1,53 @@
-import { Input, Button } from "antd";
-import React, { useState } from "react";
+import { Form } from "antd";
+import React from "react";
 import Navbar from "../components/Navbar";
 import SearchSub from "../assets/Search-sub.png";
+import { useForm } from "antd/lib/form/Form";
 
 const Search = () => {
-  const [state, setState] = useState(false);
-
-  const click = () => {
-    setState(true);
-    setTimeout(() => {
-      setState(false);
-    }, 2000);
-  };
+  const [form] = useForm();
 
   return (
-    <div>
+    <div className="h-screen">
       <Navbar name="Search" />
       <div className="p-8">
         <div className="m-16 flex justify-center">
           <img src={SearchSub} alt="checking" />
         </div>
-        <p className="text-center">เลือกกรอกอย่างน้อย 1 ช่อง</p>
-        <div style={{ marginBottom: 16 }}>
-          <Input addonBefore="ชื่อ" />
-        </div>
-        <div style={{ marginBottom: 16 }}>
-          <Input addonBefore="เลขบัญชี" />
-        </div>
-        <div style={{ marginBottom: 16 }}>
-          <Input addonBefore="เบอร์โทร" />
-        </div>
-        <div className="flex items-center h-24">
-          <div className="flex-1 text-gray-700 text-center px-4 py-2 m-2"></div>
-          <div className="flex-1 text-gray-700 text-center px-4 py-2 m-2">
-            <Button type="primary">ค้นหา</Button>
+        <Form form={form} onFinish={(v) => console.log(v)}>
+          <div className="text-center text-base">เลือกกรอกอย่างน้อย 1 ช่อง</div>
+          <Form.Item name="name">
+            <div className="flex text-base rounded-lg pr-1 border-2 border-gray-400 h-10">
+              <div className="rounded w-32  bg-blue-900 text-white leading-10 px-2">
+                ชื่อ
+              </div>
+              <input className="px-2 w-full" type="text" />
+            </div>
+          </Form.Item>
+          <Form.Item name="bank">
+            <div className="flex text-base rounded-lg pr-1 border-2 border-gray-400 h-10">
+              <div className="rounded w-32  bg-blue-900 text-white leading-10 px-2">
+                เลขบัญชี
+              </div>
+              <input className="px-2 w-full" type="text" />
+            </div>
+          </Form.Item>
+          <Form.Item name="phone">
+            <div className="flex text-base rounded-lg pr-1 border-2 border-gray-400 h-10">
+              <div className="rounded w-32  bg-blue-900 text-white leading-10 px-2">
+                เบอร์โทร
+              </div>
+              <input className="px-2 w-full" type="text" />
+            </div>
+          </Form.Item>
+          <div className="text-center">
+            <input
+              type="submit"
+              className="px-4 py-2 mt-12 bg-blue-900 text-white text-xl font-medium"
+              value="ค้นหา"
+            />
           </div>
-          <div className="flex-1 text-gray-700 text-center px-4 py-2 m-2"></div>
-        </div>
+        </Form>
       </div>
     </div>
   );
