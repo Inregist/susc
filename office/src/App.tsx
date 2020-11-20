@@ -1,7 +1,7 @@
 import React from "react";
+import "antd/dist/antd.css";
 import "./styles/style.css";
 import "./styles/tailwind.css";
-import "antd/dist/antd.css";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LogIn from "./pages/LogIn";
