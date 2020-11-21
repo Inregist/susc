@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LogIn from "./pages/LogIn";
 import Main from "./pages/Main";
 import UpdateCase from "./pages/UpdateCase";
-import MainpageMycaseDetail from "./pages/MainpageMycaseDetail";
+import CaseDetail from "./pages/CaseDetail";
 
 function App() {
   return (
@@ -16,11 +16,7 @@ function App() {
         <Switch>
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/update-case" component={UpdateCase} />
-          <Route
-            exact
-            path="/main-page-my-case-detail"
-            component={MainpageMycaseDetail}
-          />
+          <Route exact path="/case-detail" component={CaseDetail} />
           <Route path="/" component={Main} />
         </Switch>
       </Router>
