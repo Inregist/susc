@@ -9,9 +9,9 @@ const CheckCase = () => {
 
   return (
     <div className="bg-gray-300 h-screen">
-      
-      <Navbar name="ตรวจสอบ"/>CheckCase Page
-
+      <title>ติดตามคดี</title>
+      <Navbar name="ตรวจสอบ" />
+      CheckCase Page
       <div className="mt-32 mb-8 flex justify-center text-xl">
         กรอกเลขบัตรประจำตัวประชาชนของคุณ
       </div>

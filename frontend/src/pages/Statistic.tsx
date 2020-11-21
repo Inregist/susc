@@ -252,6 +252,7 @@ const Statistic = () => {
 
   return (
     <div className="h-screen">
+      <title>สถิติ</title>
       <Navbar name="Statistic" />
       <Tabs size={"large"} centered>
         <Tabs.TabPane tab="Graph" key="1">

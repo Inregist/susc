@@ -10,6 +10,7 @@ import Navbar from "../components/Navbar";
 const Home = () => {
   return (
     <div className="h-screen">
+      <title>หน้าแรก</title>
       <Navbar name="Home" />
       <div className="p-4">
         <Link to="search" className="mb-2 flex justify-center">
