@@ -1,20 +1,33 @@
 import React from "react";
-import { Modal, Select, Collapse, Input, Upload, Button } from "antd";
+import { Modal, Select, Collapse, Input, Upload } from "antd";
+import { CaseType } from "../pages/Main";
+import FooterButton from "./FooterButton";
 
 const { Option } = Select;
 const { Panel } = Collapse;
 
-const UpdateCase = () => {
+const UpdateCaseModal = ({
+  caseData,
+  visible,
+  setVisible,
+}: {
+  caseData: CaseType;
+  visible: boolean;
+  setVisible: any;
+}) => {
   return (
     <Modal
       title="อัพเดทคดี : C0020"
-      visible={true}
+      visible={visible}
       width={800}
+      onCancel={() => setVisible(false)}
       footer={[
-        <div>
-          <Button key="ok">บันทึก</Button>
-          <Button key="cancel">ยกเลิก</Button>
-        </div>,
+        <FooterButton onClick={() => setVisible(false)} key="Ok">
+          บันทึก
+        </FooterButton>,
+        <FooterButton onClick={() => setVisible(false)} key="Cancel">
+          ยกเลิก
+        </FooterButton>,
       ]}
     >
       <div className="justify-between flex px-8">
@@ -103,4 +116,4 @@ const UpdateCase = () => {
     </Modal>
   );
 };
-export default UpdateCase;
+export default UpdateCaseModal;

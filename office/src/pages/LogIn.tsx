@@ -1,12 +1,21 @@
 import React from "react";
 
 const LogIn = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const user = e.target[0].value;
+    const password = e.target[1].value;
+    if (user === "admin" && password === "root") window.location.replace("/");
+  };
+
   return (
     <div style={{ background: "#072A4B" }} className="h-screen">
       <div className="h-full w-full leading-loose flex justify-center items-center">
         <form
+          method="post"
           style={{ background: "#fbfbfb", width: "24rem" }}
           className=" m-4 p-10 rounded-lg shadow-md"
+          onSubmit={onSubmit}
         >
           <label
             className="font-semibold flex justify-center mb-8"

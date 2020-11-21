@@ -1,39 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Button } from "antd";
+import { CaseType } from "../pages/Main";
+import FooterButton from "./FooterButton";
+import UpdateCaseModal from "./UpdateCaseModal";
+import UpdateMediationModal from "./UpdateMediationModal";
 
-const CaseDetail = () => {
+const CaseDetailModal = ({
+  caseData,
+  setCaseData,
+}: {
+  caseData: CaseType;
+  setCaseData: (n: CaseType) => void;
+}) => {
+  const [showUpdateCase, setShowUpdateCase] = useState(false);
+  const [showMediation, setShowMediation] = useState(false);
+
   return (
     <Modal
-      title="C0020"
-      visible={true}
-      width={800}
+      key={caseData.data["caseID"]}
+      visible={caseData.show}
+      title={caseData.data["caseID"]}
+      width={650}
+      onCancel={() => setCaseData({ show: false, data: {} })}
       footer={[
-        <div>
-          <Button
-            style={{
-              background: "#072A4B",
-              borderColor: "#072A4B",
-              width: "130px",
-              height: "46px",
-              borderRadius: "8px",
-            }}
-            key="1"
-          >
-            <div className="text-white">การไกล่เกลี่ย</div>
-          </Button>
-          <Button
-            style={{
-              background: "#072A4B",
-              borderColor: "#072A4B",
-              width: "130px",
-              height: "46px",
-              borderRadius: "8px",
-            }}
-            key="2"
-          >
-            <div className="text-white">อัพเดทคดี</div>
-          </Button>
-        </div>,
+        <FooterButton onClick={() => setShowMediation(true)} key="mediaion">
+          การไกล่เกลี่ย
+        </FooterButton>,
+        <FooterButton onClick={() => setShowUpdateCase(true)} key="updatecase">
+          อัพเดทคดี
+        </FooterButton>,
       ]}
     >
       <div className="flex justify-between px-8">
@@ -65,8 +60,18 @@ const CaseDetail = () => {
           </div>
         </div>
       </div>
+      <UpdateCaseModal
+        visible={showUpdateCase}
+        setVisible={setShowUpdateCase}
+        caseData={caseData}
+      />
+      <UpdateMediationModal
+        visible={showMediation}
+        setVisible={setShowMediation}
+        caseData={caseData}
+      />
     </Modal>
   );
 };
 
-export default CaseDetail;
+export default CaseDetailModal;
