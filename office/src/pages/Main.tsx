@@ -1,33 +1,53 @@
 import { Checkbox, Dropdown, Menu, Table, Tabs, Tag } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { DownOutlined } from "@ant-design/icons";
 import Column from "antd/lib/table/Column";
 import CaseDetailModal from "../components/CaseDetailModal";
+import { DataContext } from "../DataContext";
 
-export interface CaseType {
-  show: boolean;
-  data:
-    | {
-        key: string;
-        caseID: string;
-        operatingStatus:
-          | "รับแจ้งคดีแล้ว"
-          | "กำลังตรวจสอบ"
-          | "ตรวจสอบเสร็จสิ้น"
-          | "ปิดคดี";
-        goods: string;
-        reportDate: string;
-        staff: "string";
-        result: "กำลังดำเนินการ" | "ฉ้อโกง" | "บริสุทธิ์";
-      }
-    | {};
-}
+export type CaseType = {
+  key: string;
+  caseID: string;
+  operatingStatus:
+    | "รับแจ้งคดีแล้ว"
+    | "กำลังตรวจสอบ"
+    | "ตรวจสอบเสร็จสิ้น"
+    | "ปิดคดี";
+  goods: string;
+  reportDate: string;
+  staff: string;
+  result: "กำลังดำเนินการ" | "ฉ้อโกง" | "บริสุทธิ์";
+  reporter: {
+    name: string;
+    citizenID: string;
+    phone: string;
+    email: string;
+  };
+  suspect: {
+    name: string;
+    citizenID: string;
+    phone: string;
+    email: string;
+    bank: string;
+  };
+  medation: {
+    key: string;
+    date: any;
+    result: string;
+  }[];
+  platform;
+};
 
 const Main = () => {
-  const [caseData, setCaseData] = useState<CaseType>({ show: false, data: {} });
-
+  const [show, setShow] = useState(false);
   const [showOperationgStatus, setShowOperationgStatus] = useState(false);
+
+  const { data, caseData, setCaseData } = useContext(DataContext);
+  useEffect(() => {
+    if (!caseData.caseID) return;
+    setCaseData(data.filter((d) => d.caseID === caseData.caseID)[0]);
+  }, [data, caseData.caseID, setCaseData]);
 
   const [selectedOperationgStatus, setSelectedOperationgStatus] = useState([
     { name: "รับแจ้งคดีแล้ว", check: true },
@@ -86,27 +106,6 @@ const Main = () => {
     </div>
   );
 
-  const [data, setData] = useState(
-    Array(20)
-      .fill(0)
-      .map((d, i) => ({
-        key: `${i}`,
-        caseID: `C${i.toString().padStart(3, "0")}`,
-        operatingStatus: [
-          "รับแจ้งคดีแล้ว",
-          "กำลังตรวจสอบ",
-          "ตรวจสอบเสร็จสิ้น",
-          "ปิดคดี",
-        ][Math.floor(Math.random() * 4)],
-        goods: "กางเกง",
-        reportDate: "12.08.2020",
-        staff: ["ทำงานหนักมาก", "ฉันไม่ทำงาน"][Math.floor(Math.random() * 2)],
-        result: ["กำลังดำเนินการ", "ฉ้อโกง", "บริสุทธิ์"][
-          Math.floor(Math.random() * 3)
-        ],
-      }))
-  );
-
   return (
     <div style={{ background: "#ffffff" }} className="h-screen">
       <Navbar />
@@ -116,6 +115,7 @@ const Main = () => {
             <CaseTable
               data={data.filter((d) => d.staff === "ทำงานหนักมาก")}
               setCaseData={setCaseData}
+              setShow={setShow}
             />
           </Tabs.TabPane>
           <Tabs.TabPane tab={<div className="mx-3">คดีทั้งหมด</div>} key="2">
@@ -123,17 +123,24 @@ const Main = () => {
           </Tabs.TabPane>
         </Tabs>
       </div>
-      <CaseDetailModal caseData={caseData} setCaseData={setCaseData} />
+      <CaseDetailModal visible={show} setVisible={setShow} />
     </div>
   );
 };
 
 export default Main;
 
-const CaseTable = ({ data, setCaseData = (n: CaseType) => {} }) => (
+const CaseTable = ({
+  data,
+  setCaseData = (n: CaseType) => {},
+  setShow = (n) => {},
+}) => (
   <Table
     onRow={(rec, idx) => ({
-      onClick: () => setCaseData({ show: true, data: rec }),
+      onClick: () => {
+        setCaseData(rec);
+        setShow(true);
+      },
     })}
     rowClassName="cursor-pointer"
     style={{

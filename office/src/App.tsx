@@ -6,8 +6,7 @@ import "./styles/style.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LogIn from "./pages/LogIn";
 import Main from "./pages/Main";
-import AddTime from "./pages/AddTime";
-import AddResult from "./pages/AddResult";
+import DataProvider from "./DataContext";
 
 function App() {
   return (
@@ -15,9 +14,10 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/login" component={LogIn} />
-          <Route exact path="/add-time" component={AddTime} />
-          <Route exact path="/add-result" component={AddResult} />
-          <Route path="/" component={Main} />
+
+          <DataProvider>
+            <Route path="/" component={Main} />
+          </DataProvider>
         </Switch>
       </Router>
     </div>
