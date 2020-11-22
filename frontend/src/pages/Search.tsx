@@ -22,7 +22,7 @@ const Search = () => {
     }
 
     axios({
-      url: "http://localhost:5000/search",
+      url: "https://susc-api.herokuapp.com/search",
       method: "post",
       data: {
         name,
