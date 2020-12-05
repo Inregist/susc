@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LogIn = () => {
   const onSubmit = (e) => {
@@ -52,13 +53,16 @@ const LogIn = () => {
               required
             />
             <div className="flex justify-center">
-              <button
-                className="mt-10 px-4 py-2 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded-lg"
-                style={{ backgroundColor: "#0E4171" }}
-                type="submit"
-              >
-                เข้าสู่ระบบ
-              </button>
+              <Link to="/">
+                <button
+                  className="mt-10 px-4 py-2 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded-lg"
+                  style={{ backgroundColor: "#0E4171" }}
+                  type="submit"
+                >
+                  เข้าสู่ระบบ
+                </button>
+              </Link>
+              
             </div>
           </div>
         </form>
