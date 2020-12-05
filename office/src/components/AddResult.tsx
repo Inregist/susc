@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { Modal, Input } from "antd";
 import Garbage from "../assets/garbage.png";
 import FooterButton from "./FooterButton";
@@ -15,8 +15,13 @@ const AddResult = ({
   const { TextArea } = Input;
 
   const [result, setResult] = useState("");
-
   const { data, setData, caseData } = useContext(DataContext);
+
+  useEffect(() => {
+    if (visible) setResult(obj.result);
+    else setResult("");
+  }, [visible, obj]);
+
   return (
     <Modal
       width={800}
@@ -24,7 +29,24 @@ const AddResult = ({
       title={`การไกล่เกลี่ย : ${caseData.caseID} ครั้งที่ ${obj.key}`}
       footer={
         <div className="flex justify-between">
-          <button className="inline-flex items-center justify-center w-10 h-10 mr-2  transition-colors duration-150 bg-red-700 rounded-lg focus:shadow-outline ">
+          <button
+            className="inline-flex items-center justify-center w-10 h-10 mr-2  transition-colors duration-150 bg-red-700 rounded-lg focus:shadow-outline "
+            onClick={() => {
+              setData((current) => {
+                setVisible(false);
+                const newData = current.map((d) =>
+                  d.caseID === caseData.caseID
+                    ? {
+                        ...d,
+                        mediation: d.mediation.filter((m) => m.key !== obj.key),
+                      }
+                    : d
+                );
+                console.log([...newData]);
+                return [...newData];
+              });
+            }}
+          >
             <img src={Garbage} width="20" height="20" alt="icon" />
           </button>
           <div>
@@ -34,7 +56,7 @@ const AddResult = ({
                   d.caseID === caseData.caseID
                     ? {
                         ...d,
-                        medation: d.medation.map((m) =>
+                        mediation: d.mediation.map((m) =>
                           m.key === obj.key
                             ? {
                                 ...m,
@@ -47,7 +69,6 @@ const AddResult = ({
                 );
 
                 setData(newData);
-
                 setVisible(false);
               }}
             >
@@ -69,7 +90,11 @@ const AddResult = ({
       </div>
       <div className="font-bold pt-4">
         ผลการไกล่เกลี่ย: <br />
-        <TextArea onChange={(e) => setResult(e.target.value)} rows={5} />
+        <TextArea
+          value={result}
+          onChange={(e) => setResult(e.target.value)}
+          rows={5}
+        />
       </div>
     </Modal>
   );

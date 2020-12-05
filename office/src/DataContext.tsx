@@ -30,7 +30,7 @@ export const DataContext = createContext<{
       email: "",
       bank: "",
     },
-    medation: [],
+    mediation: [],
     platform: "",
   },
   setCaseData: () => {},
@@ -58,7 +58,7 @@ const DataProvider = ({ children }) => {
       email: "",
       bank: "",
     },
-    medation: [
+    mediation: [
       {
         key: "",
         date: "",
@@ -100,7 +100,7 @@ const DataProvider = ({ children }) => {
           email: "kan@kan.com",
           bank: "12-123-1254-6",
         },
-        medation: [],
+        mediation: [],
         platform: "lazada",
       }))
   );
