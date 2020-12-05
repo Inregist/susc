@@ -45,8 +45,8 @@ const Search = () => {
         <Form form={form} onFinish={onFinish}>
           <div className="text-center text-base">เลือกกรอกอย่างน้อย 1 ช่อง</div>
           <Form.Item name="name">
-            <div className="flex text-base rounded-lg pr-1 border-2 border-gray-400 h-10">
-              <div className="rounded w-32  bg-blue-900 text-white leading-10 px-2">
+            <div className="flex items-center justify-around text-base rounded-lg pr-1 border-2 border-gray-400 h-10">
+              <div className="rounded-lg left-px w-32 h-10 text-base bg-blue-900 text-white leading-10 px-2">
                 ชื่อ
               </div>
               <input className="px-2 w-full" type="text" />
@@ -54,7 +54,7 @@ const Search = () => {
           </Form.Item>
           <Form.Item name="bank">
             <div className="flex text-base rounded-lg pr-1 border-2 border-gray-400 h-10">
-              <div className="rounded w-32  bg-blue-900 text-white leading-10 px-2">
+              <div className="rounded-lg w-32  bg-blue-900 text-white leading-10 px-2">
                 เลขบัญชี
               </div>
               <input className="px-2 w-full" type="text" />
