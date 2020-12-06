@@ -125,7 +125,7 @@ const Report = () => {
             tooltip="ไม่จำเป็นต้องกรอก"
             name={["suspect", "phone"]}
           >
-            <Input placeholder="เบอร์โทรศัพท์" />
+            <Input placeholder="เบอร์โทรศัพท์"/>
           </Form.Item>
           <Form.Item
             label="เลขบัญชี"

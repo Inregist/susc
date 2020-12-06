@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Button, Input,Tooltip  } from "antd";
 import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
 
 const CheckCase = () => {
-  const onChange = (e) => {
-    console.log(e);
+  const [citizenID, setCitizenID] = useState("");
+
+  const formatInput = (e, format) => {
+    const formatArray = format.split("-").map((s) => s.length);
+    const formatLen = formatArray.reduce((acc, i) => acc + i);
+    const input = e.target.value.replaceAll("-", "");
+    const regex = RegExp(`^${formatArray.map((f) => `(\\d{${f}})?`).join("")}`);
+    const splited = input.split(regex).filter((i) => i);
+    const newValue = splited.join("-");
+    return newValue.length >= formatLen
+      ? newValue.slice(0, formatLen + formatArray.length - 1)
+      : newValue;
   };
 
   return (
@@ -21,7 +31,8 @@ const CheckCase = () => {
           size="large"
           placeholder="เลขบัตรประจำตัวประชาชน"
           allowClear
-          onChange={onChange}
+          value={citizenID}
+          onChange={(e) => setCitizenID(formatInput(e, "x-xxxx-xxxxx-xx-x"))}
           style={{ width: "340px" }}
           prefix={<UserOutlined className="site-form-item-icon" />}
       suffix={
