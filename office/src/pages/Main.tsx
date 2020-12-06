@@ -5,6 +5,7 @@ import { DownOutlined } from "@ant-design/icons";
 import Column from "antd/lib/table/Column";
 import CaseDetailModal from "../components/CaseDetailModal";
 import { DataContext } from "../DataContext";
+import {useHistory} from 'react-router-dom'
 
 export type CaseType = {
   key: string;
@@ -40,6 +41,12 @@ export type CaseType = {
 };
 
 const Main = () => {
+
+  const history = useHistory()
+  useEffect(() => {
+    if (!localStorage.getItem("isLogin")) history.push('/login');
+  });
+
   const [show, setShow] = useState(false);
   const [showOperationgStatus, setShowOperationgStatus] = useState(false);
 

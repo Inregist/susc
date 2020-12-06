@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Modal, Input } from "antd";
 import Garbage from "../assets/garbage.png";
 import FooterButton from "./FooterButton";

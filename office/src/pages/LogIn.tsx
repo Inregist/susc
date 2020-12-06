@@ -1,12 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { message } from "antd";
 
 const LogIn = () => {
+  const history = useHistory();
+  useEffect(() => {
+    if (localStorage.getItem("isLogin")) history.push("/");
+  });
+
   const onSubmit = (e) => {
     e.preventDefault();
     const user = e.target[0].value;
     const password = e.target[1].value;
-    if (user === "admin" && password === "root") window.location.replace("/");
+    if (user === "root" && password === "root") {
+      localStorage.setItem("isLogin", "true");
+      history.push("/");
+    }else
+    message.error("เข้าสู่ระบบไม่สำเร็จ")
   };
 
   return (
@@ -53,16 +63,13 @@ const LogIn = () => {
               required
             />
             <div className="flex justify-center">
-              <Link to="/">
-                <button
-                  className="mt-10 px-4 py-2 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded-lg"
-                  style={{ backgroundColor: "#0E4171" }}
-                  type="submit"
-                >
-                  เข้าสู่ระบบ
-                </button>
-              </Link>
-              
+              <button
+                className="mt-10 px-4 py-2 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded-lg"
+                style={{ backgroundColor: "#0E4171" }}
+                type="submit"
+              >
+                เข้าสู่ระบบ
+              </button>
             </div>
           </div>
         </form>
