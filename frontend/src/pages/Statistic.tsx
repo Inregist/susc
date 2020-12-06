@@ -324,28 +324,6 @@ const Statistic = () => {
           </div>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Report" key="2">
-          {/*<div className="flex justify-around items-center border-t border-gray-200 mt-5 h-10">
-            <Dropdown
-              visible={showCatReport}
-              onVisibleChange={setShowCatReport}
-              overlay={menuCategory}
-              placement="bottomCenter"
-            >
-              <div>
-                Category <DownOutlined />
-              </div>
-            </Dropdown>
-            <Dropdown
-              visible={showPlatformReport}
-              overlay={menuPlatform}
-              onVisibleChange={setShowPlatformReport}
-              placement="bottomCenter"
-            >
-              <div>
-                Platform <DownOutlined />
-              </div>
-            </Dropdown>
-          </div>*/}
           <List
             style={{ padding: 30 }}
             itemLayout="horizontal"
