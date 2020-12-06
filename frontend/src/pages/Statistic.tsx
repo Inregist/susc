@@ -14,39 +14,49 @@ const Statistic = () => {
 
   const dataMock = [
     {
-      title: "ชื่อ",
-      value: "จำนวนครั้งที่ถูกแจ้ง",
-    },
-    {
       title: "นางป๋อง แป๋ง",
-      value: 100,
+      category: "เครื่องสำอาง",
+      platform: "Twitter",
+      count: 200
     },
     {
       title: "นางสาวเกด ดาดาจิ",
-      value: 50,
+      category: "เสื้อผ้า",
+      platform: "Twitter",
+      count: 150
     },
     {
       title: "นางสาวน้ำปูน จิจิดา",
-      value: 30,
+      category: "เสื้อผ้า",
+      platform: "eBay",
+      count: 300
     },
     {
       title: "นายทีปจิระ งามภักดี",
-      value: 30,
+      category: "เครื่องใช้ไฟฟ้า",
+      platform: "eBay",
+      count: 250
+    },
+    {
+      title: "นายกัน สถาพร",
+      category: "เครื่องสำอาง",
+      platform: "Twitter",
+      count: 100
     },
   ];
 
   const [selectedCat, setSelectedCat] = useState([
-    { name: "เครื่องสำอาง", check: false },
-    { name: "เสื้อผ้า", check: false },
-    { name: "เครื่องใช้ไฟฟ้า", check: false },
+    { name: "เครื่องสำอาง", check: true },
+    { name: "เสื้อผ้า", check: true },
+    { name: "เครื่องใช้ไฟฟ้า", check: true },
     { name: "ของใช้ในครัว", check: false },
     { name: "ของใช้ในสำนักงาน", check: false },
   ]);
   const [selectedPlatForm, setSelectedPlatForm] = useState([
-    { name: "eBay", check: false },
-    { name: "Amazon", check: false },
-    { name: "Twitter", check: false },
-    { name: "Lazada", check: false },
+    { name: "eBay", check: true },
+    { name: "Amazon", check: true },
+    { name: "Twitter", check: true },
+    { name: "Lazada", check: true },
     { name: "Shopee", check: false },
   ]);
 
@@ -183,7 +193,7 @@ const Statistic = () => {
     ],
   };
 
-  /*const menuCategory = (
+  const menuCategory = (
     <Menu>
       <Menu.Item>เลือกประเภทสินค้า (ไม่เกิน 3 ชนิด)</Menu.Item>
       {selectedCat.map((item) => (
@@ -248,7 +258,7 @@ const Statistic = () => {
         </Menu.Item>
       ))}
     </Menu>
-  );*/
+  );
 
   return (
     <div className="h-screen">
@@ -258,6 +268,7 @@ const Statistic = () => {
         <Tabs.TabPane tab="Graph" key="1">
           <div className="flex justify-center">
             <Radio.Group
+              defaultValue={"cat"}
               onChange={(e) => {
                 setPieDisplay(e.target.value);
               }}
@@ -272,28 +283,6 @@ const Statistic = () => {
               pieDisplay === "cat" ? chartPieDataCat : chartPieDataPlat
             }
           />
-          {/*<div className="flex justify-around items-center border-t border-gray-500 mt-10 h-12">
-            {<Dropdown
-              visible={showCatGraph}
-              onVisibleChange={setShowCatGraph}
-              overlay={menuCategory}
-              placement="bottomCenter"
-            >
-              <div>
-                Category <DownOutlined />
-              </div>
-            </Dropdown>
-            <Dropdown
-              visible={showPlatformGraph}
-              overlay={menuPlatform}
-              onVisibleChange={setShowPlatformGraph}
-              placement="bottomCenter"
-            >
-              <div>
-                Platform <DownOutlined />
-              </div>
-            </Dropdown>
-            </div>*/}
           <div className="px-4">
             <ChartBar
               title=""
@@ -324,14 +313,45 @@ const Statistic = () => {
           </div>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Report" key="2">
+        <div className="flex justify-around items-center mt-10 h-12">
+            <Dropdown
+              visible={showCatGraph}
+              onVisibleChange={setShowCatGraph}
+              overlay={menuCategory}
+              placement="bottomCenter"
+            >
+              <div>
+                Category <DownOutlined />
+              </div>
+            </Dropdown>
+            <Dropdown
+              visible={showPlatformGraph}
+              overlay={menuPlatform}
+              onVisibleChange={setShowPlatformGraph}
+              placement="bottomCenter"
+            >
+              <div>
+                Platform <DownOutlined />
+              </div>
+            </Dropdown>
+            </div>
           <List
             style={{ padding: 30 }}
             itemLayout="horizontal"
-            dataSource={dataMock}
+            dataSource={dataMock.filter((d) =>
+              selectedPlatForm
+                .filter((o) => o.check)
+                .map((o) => o.name)
+                .includes(d.platform)
+              ).filter((d) => 
+              selectedCat
+                .filter((o) => o.check)
+                .map((o) => o.name)
+                .includes(d.category))}
             renderItem={(item) => (
               <List.Item>
                 <List.Item.Meta title={item.title} />
-                <div>{item.value}</div>
+                <div>{item.count}</div>
               </List.Item>
             )}
           />
@@ -344,6 +364,9 @@ const Statistic = () => {
 const ChartPie = ({ chartData, title }) => {
   return (
     <div className="chart">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap');
+      </style>
       <Pie
         data={chartData}
         options={{
@@ -357,6 +380,7 @@ const ChartPie = ({ chartData, title }) => {
             labels: {
               boxWidth: 20,
               fontSize: 10,
+              fontFamily: "Kanit"
             },
           },
         }}
@@ -368,6 +392,9 @@ const ChartPie = ({ chartData, title }) => {
 const ChartBar = ({ chartData, title }) => {
   return (
     <div className="chart">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap');
+      </style>
       <Bar
         data={chartData}
         options={{
@@ -380,10 +407,14 @@ const ChartBar = ({ chartData, title }) => {
             position: "bottom",
             labels: {
               boxWidth: 10,
-              fontSize: 8,
-              fontFamily: 'Helvetica'
+              fontSize: 10,
+              fontFamily: "Kanit",
             },
           },
+          scales: {
+            yAxes : [{ticks: {fontFamily: "Kanit", fontSize: 10}}],
+            xAxes : [{ticks: {fontFamily: "Kanit", fontSize: 10}}]
+          }
         }}
       />
     </div>
