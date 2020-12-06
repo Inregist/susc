@@ -26,20 +26,25 @@ const UpdateMediationModal = ({
       title: "ลำดับการไกล่เกลี่ย",
       dataIndex: "key",
       key: "key",
+      width: "25%",
     },
     {
       title: "เวลานัดไกล่เกลี่ย",
       dataIndex: "date",
       key: "date",
+      width: "15%",
       render: (m) => m.format("YYYY-MM-DDTHH:mm:ssZ"),
     },
     {
       title: "ผลการไกล่เกลี่ย",
       dataIndex: "result",
       key: "result",
+      width: "60%",
       render: (item, i) => {
         return item ? (
-          <div>{item}</div>
+          <div className="truncate" style={{ width: "400px" }}>
+            {item}
+          </div>
         ) : (
           <button
             onClick={() => {
@@ -61,14 +66,14 @@ const UpdateMediationModal = ({
   const addMediation = (newMediation) => {
     const obj = {
       key: `${
-        data.filter((d) => d.caseID === caseData.caseID)[0].medation.length + 1
+        data.filter((d) => d.caseID === caseData.caseID)[0].mediation.length + 1
       }`,
       date: newMediation,
       result: "",
     };
     const newData = data.map((d) =>
       d.caseID === caseData.caseID
-        ? { ...d, medation: [...d.medation, obj] }
+        ? { ...d, mediation: [...d.mediation, obj] }
         : d
     );
     setData(newData);
@@ -99,9 +104,15 @@ const UpdateMediationModal = ({
     >
       <div className="border-gray-500 p-4">
         <Table
+          onRow={(rec, idx) => ({
+            onClick: () => {
+              setIdx(rec);
+              setUpdateModal(true);
+            },
+          })}
           pagination={{ pageSize: 5 }}
           dataSource={
-            data.filter((d) => d.caseID === caseData.caseID)[0].medation
+            data.filter((d) => d.caseID === caseData.caseID)[0].mediation
           }
           columns={columns}
         />

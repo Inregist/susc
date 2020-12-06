@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Pie, Bar } from "react-chartjs-2";
 import { Menu, Dropdown, Checkbox, Tabs, Button, Radio, List } from "antd";
@@ -10,7 +10,7 @@ const Statistic = () => {
   const [showCatReport, setShowCatReport] = useState(false);
   const [showPlatformReport, setShowPlatformReport] = useState(false);
   const [pieDisplay, setPieDisplay] = useState("cat");
-  const [barDisplay, setBarDisplay] = useState("quarter");
+  const [barDisplay, setBarDisplay] = useState("month");
 
   const dataMock = [
     {
@@ -90,7 +90,7 @@ const Statistic = () => {
     ],
   };
 
-  const [chartBarDataMonth, setChartBarDataMonth] = useState({
+  const chartBarDataMonth = {
     labels: ["eBay", "Amazon", "Lazada", "Twitter", "Shopee"],
     datasets: [
       {
@@ -119,9 +119,9 @@ const Statistic = () => {
         backgroundColor: "rgba(255, 127, 74, 0.6)",
       },
     ],
-  });
+  };
 
-  const [chartBarDataQuarter, setChartBarDataQuarter] = useState({
+  const chartBarDataQuarter = {
     labels: ["eBay", "Amazon", "Lazada", "Twitter", "Shopee"],
     datasets: [
       {
@@ -150,11 +150,9 @@ const Statistic = () => {
         backgroundColor: "rgba(255, 127, 74, 0.6)",
       },
     ],
-  });
+  };
 
-  
-
-  const [chartBarDataYear, setChartBarDataYear] = useState({
+  const chartBarDataYear = {
     labels: ["eBay", "Amazon", "Lazada", "Twitter", "Shopee"],
     datasets: [
       {
@@ -183,7 +181,7 @@ const Statistic = () => {
         backgroundColor: "rgba(255, 127, 74, 0.6)",
       },
     ],
-  });
+  };
 
   const menuCategory = (
     <Menu>
@@ -299,13 +297,17 @@ const Statistic = () => {
           <div className="px-4">
             <ChartBar
               title=""
-              chartData={
-                barDisplay === "month"
-                  ? chartBarDataMonth
-                  : (barDisplay === "quarter"
-                  ? chartBarDataQuarter
-                  : chartBarDataYear)
-              }
+              chartData={(() => {
+                const data =
+                  barDisplay === "year"
+                    ? chartBarDataYear
+                    : barDisplay === "month"
+                    ? chartBarDataMonth
+                    : barDisplay === "quarter"
+                    ? chartBarDataQuarter
+                    : {};
+                return data;
+              })()}
             />
             <div className="flex mb-4 justify-center">
               <Radio.Group

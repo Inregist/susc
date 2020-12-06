@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Search from "../assets/Search.png";
+import Search from "../assets/Search-main.png";
 import Report from "../assets/Report.png";
 import Statistic from "../assets/Statistic.png";
 import CheckCase from "../assets/CheckCase.png";

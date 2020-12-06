@@ -31,7 +31,7 @@ export type CaseType = {
     email: string;
     bank: string;
   };
-  medation: {
+  mediation: {
     key: string;
     date: any;
     result: string;
@@ -62,6 +62,7 @@ const Main = () => {
       {selectedOperationgStatus.map((item) => (
         <Menu.Item key={item.name}>
           <Checkbox
+            checked={item.check}
             onClick={() => setShowOperationgStatus(true)}
             onChange={(e) => {
               const newSelected: any = selectedOperationgStatus.map(
@@ -113,13 +114,27 @@ const Main = () => {
         <Tabs size={"large"} tabBarExtraContent={operations}>
           <Tabs.TabPane tab={<div className="mx-3">คดีของฉัน</div>} key="1">
             <CaseTable
-              data={data.filter((d) => d.staff === "ทำงานหนักมาก")}
+              data={data
+                .filter((d) =>
+                  selectedOperationgStatus
+                    .filter((o) => o.check)
+                    .map((o) => o.name)
+                    .includes(d.operatingStatus)
+                )
+                .filter((d) => d.staff === "ทำงานหนักมาก")}
               setCaseData={setCaseData}
               setShow={setShow}
             />
           </Tabs.TabPane>
           <Tabs.TabPane tab={<div className="mx-3">คดีทั้งหมด</div>} key="2">
-            <CaseTable data={data} />
+            <CaseTable
+              data={data.filter((d) =>
+                selectedOperationgStatus
+                  .filter((o) => o.check)
+                  .map((o) => o.name)
+                  .includes(d.operatingStatus)
+              )}
+            />
           </Tabs.TabPane>
         </Tabs>
       </div>
