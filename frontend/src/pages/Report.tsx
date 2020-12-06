@@ -2,6 +2,8 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import { Form, Button, Radio, Input, Select, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import ReportComplete from "./ReportSuccess";
+import ReportSuccess from "./ReportSuccess";
 
 const { TextArea } = Input;
 
@@ -159,19 +161,19 @@ const Report = () => {
               alignItems: "center",
             }}
           >
-            <Button
-              style={{
-                background: "#072A4B",
-                borderColor: "#072A4B",
-                width: "130px",
-                height: "46px",
-                borderRadius: "8px",
-              }}
-              type="primary"
-              htmlType="submit"
-            >
-              <div style={{ fontSize: 16 }}>ส่งคำร้องทุกข์</div>
-            </Button>
+              <Button
+                style={{
+                  background: "#072A4B",
+                  borderColor: "#072A4B",
+                  width: "130px",
+                  height: "46px",
+                  borderRadius: "8px",
+                }}
+                type="primary"
+                htmlType="submit"
+              >
+                <div style={{ fontSize: 16 }}>ส่งคำร้องทุกข์</div>
+              </Button>
           </Form.Item>
         </Form>
       </div>
