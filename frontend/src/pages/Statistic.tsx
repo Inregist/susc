@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Pie, Bar } from "react-chartjs-2";
 import { Menu, Dropdown, Checkbox, Tabs, Button, Radio, List } from "antd";
@@ -10,7 +10,7 @@ const Statistic = () => {
   const [showCatReport, setShowCatReport] = useState(false);
   const [showPlatformReport, setShowPlatformReport] = useState(false);
   const [pieDisplay, setPieDisplay] = useState("cat");
-  const [barDisplay, setBarDisplay] = useState("bar");
+  const [barDisplay, setBarDisplay] = useState("month");
 
   const dataMock = [
     {
@@ -90,7 +90,7 @@ const Statistic = () => {
     ],
   };
 
-  const [chartBarDataMonth, setChartBarDataMonth] = useState({
+  const chartBarDataMonth = {
     labels: ["eBay", "Amazon", "Lazada", "Twitter", "Shopee"],
     datasets: [
       {
@@ -119,9 +119,9 @@ const Statistic = () => {
         backgroundColor: "rgba(255, 127, 74, 0.6)",
       },
     ],
-  });
+  };
 
-  const [chartBarDataQuarter, setChartBarDataQuarter] = useState({
+  const chartBarDataQuarter = {
     labels: ["eBay", "Amazon", "Lazada", "Twitter", "Shopee"],
     datasets: [
       {
@@ -150,9 +150,9 @@ const Statistic = () => {
         backgroundColor: "rgba(255, 127, 74, 0.6)",
       },
     ],
-  });
+  };
 
-  const [chartBarDataYear, setChartBarDataYear] = useState({
+  const chartBarDataYear = {
     labels: ["eBay", "Amazon", "Lazada", "Twitter", "Shopee"],
     datasets: [
       {
@@ -181,7 +181,7 @@ const Statistic = () => {
         backgroundColor: "rgba(255, 127, 74, 0.6)",
       },
     ],
-  });
+  };
 
   const menuCategory = (
     <Menu>
@@ -230,7 +230,7 @@ const Statistic = () => {
                 (acc, s) => (s.check ? acc + 1 : acc),
                 0
               );
-              if (checkCnt >= 3 && e.target.checked) return;
+              if (checkCnt >= 4 && e.target.checked) return;
               const newSelected: any = selectedPlatForm.map(
                 (cat: { name: string; check: boolean }) => {
                   return {
@@ -297,13 +297,17 @@ const Statistic = () => {
           <div className="px-4">
             <ChartBar
               title=""
-              chartData={
-                barDisplay === "month"
-                  ? chartBarDataMonth
-                  : barDisplay === "quarter"
-                  ? chartBarDataQuarter
-                  : chartBarDataYear
-              }
+              chartData={(() => {
+                const data =
+                  barDisplay === "year"
+                    ? chartBarDataYear
+                    : barDisplay === "month"
+                    ? chartBarDataMonth
+                    : barDisplay === "quarter"
+                    ? chartBarDataQuarter
+                    : {};
+                return data;
+              })()}
             />
             <div className="flex mb-4 justify-center">
               <Radio.Group
@@ -320,28 +324,6 @@ const Statistic = () => {
           </div>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Report" key="2">
-          <div className="flex justify-around items-center border-t border-gray-200 mt-5 h-10">
-            <Dropdown
-              visible={showCatReport}
-              onVisibleChange={setShowCatReport}
-              overlay={menuCategory}
-              placement="bottomCenter"
-            >
-              <div>
-                Category <DownOutlined />
-              </div>
-            </Dropdown>
-            <Dropdown
-              visible={showPlatformReport}
-              overlay={menuPlatform}
-              onVisibleChange={setShowPlatformReport}
-              placement="bottomCenter"
-            >
-              <div>
-                Platform <DownOutlined />
-              </div>
-            </Dropdown>
-          </div>
           <List
             style={{ padding: 30 }}
             itemLayout="horizontal"
@@ -399,6 +381,7 @@ const ChartBar = ({ chartData, title }) => {
             labels: {
               boxWidth: 10,
               fontSize: 8,
+              fontFamily: 'Helvetica'
             },
           },
         }}

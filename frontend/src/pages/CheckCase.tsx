@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import { Button, Input } from "antd";
+import { Button, Input,Tooltip  } from "antd";
+import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
 
 const CheckCase = () => {
   const [citizenID, setCitizenID] = useState("");
@@ -21,21 +22,27 @@ const CheckCase = () => {
     <div className="bg-gray-300 h-screen">
       <title>ติดตามคดี</title>
       <Navbar name="ตรวจสอบ" />
-      CheckCase Page
-      <div className="mt-32 mb-8 flex justify-center text-xl">
+      <div className="mt-48 mb-3 flex justify-center text-xl font-bold">
         กรอกเลขบัตรประจำตัวประชาชนของคุณ
       </div>
-      <div className="mb-56 flex justify-center">
+      <div className="mb-40 flex justify-center">
         <Input
+          bordered
           size="large"
           placeholder="เลขบัตรประจำตัวประชาชน"
           allowClear
           value={citizenID}
           onChange={(e) => setCitizenID(formatInput(e, "x-xxxx-xxxxx-xx-x"))}
           style={{ width: "340px" }}
+          prefix={<UserOutlined className="site-form-item-icon" />}
+      suffix={
+        <Tooltip title="กรอกเลขบัตรประชาชนเพื่อติดตามคดี">
+          <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+        </Tooltip>
+      }
         />
       </div>
-      <div className="flex justify-center">
+      <div className=" flex justify-center">
         <Button
           type="primary"
           size="large"
