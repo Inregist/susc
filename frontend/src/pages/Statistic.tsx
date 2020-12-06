@@ -10,7 +10,7 @@ const Statistic = () => {
   const [showCatReport, setShowCatReport] = useState(false);
   const [showPlatformReport, setShowPlatformReport] = useState(false);
   const [pieDisplay, setPieDisplay] = useState("cat");
-  const [barDisplay, setBarDisplay] = useState("bar");
+  const [barDisplay, setBarDisplay] = useState("quarter");
 
   const dataMock = [
     {
@@ -152,6 +152,8 @@ const Statistic = () => {
     ],
   });
 
+  
+
   const [chartBarDataYear, setChartBarDataYear] = useState({
     labels: ["eBay", "Amazon", "Lazada", "Twitter", "Shopee"],
     datasets: [
@@ -230,7 +232,7 @@ const Statistic = () => {
                 (acc, s) => (s.check ? acc + 1 : acc),
                 0
               );
-              if (checkCnt >= 3 && e.target.checked) return;
+              if (checkCnt >= 4 && e.target.checked) return;
               const newSelected: any = selectedPlatForm.map(
                 (cat: { name: string; check: boolean }) => {
                   return {
@@ -300,9 +302,9 @@ const Statistic = () => {
               chartData={
                 barDisplay === "month"
                   ? chartBarDataMonth
-                  : barDisplay === "quarter"
+                  : (barDisplay === "quarter"
                   ? chartBarDataQuarter
-                  : chartBarDataYear
+                  : chartBarDataYear)
               }
             />
             <div className="flex mb-4 justify-center">
@@ -320,7 +322,7 @@ const Statistic = () => {
           </div>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Report" key="2">
-          <div className="flex justify-around items-center border-t border-gray-200 mt-5 h-10">
+          {/*<div className="flex justify-around items-center border-t border-gray-200 mt-5 h-10">
             <Dropdown
               visible={showCatReport}
               onVisibleChange={setShowCatReport}
@@ -341,7 +343,7 @@ const Statistic = () => {
                 Platform <DownOutlined />
               </div>
             </Dropdown>
-          </div>
+          </div>*/}
           <List
             style={{ padding: 30 }}
             itemLayout="horizontal"
@@ -399,6 +401,7 @@ const ChartBar = ({ chartData, title }) => {
             labels: {
               boxWidth: 10,
               fontSize: 8,
+              fontFamily: 'Helvetica'
             },
           },
         }}
