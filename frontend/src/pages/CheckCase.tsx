@@ -9,7 +9,7 @@ const CheckCase = () => {
   };
 
   return (
-    <div className="bg-gray-300 h-screen">
+    <div className="bg-white-300 h-screen">
       <title>ติดตามคดี</title>
       <Navbar name="ตรวจสอบ" />
       <div className="mt-48 mb-3 flex justify-center text-xl font-bold">

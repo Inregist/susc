@@ -183,7 +183,7 @@ const Statistic = () => {
     ],
   };
 
-  const menuCategory = (
+  /*const menuCategory = (
     <Menu>
       <Menu.Item>เลือกประเภทสินค้า (ไม่เกิน 3 ชนิด)</Menu.Item>
       {selectedCat.map((item) => (
@@ -248,7 +248,7 @@ const Statistic = () => {
         </Menu.Item>
       ))}
     </Menu>
-  );
+  );*/
 
   return (
     <div className="h-screen">
@@ -272,8 +272,8 @@ const Statistic = () => {
               pieDisplay === "cat" ? chartPieDataCat : chartPieDataPlat
             }
           />
-          <div className="flex justify-around items-center border-t border-gray-500 mt-10 h-12">
-            <Dropdown
+          {/*<div className="flex justify-around items-center border-t border-gray-500 mt-10 h-12">
+            {<Dropdown
               visible={showCatGraph}
               onVisibleChange={setShowCatGraph}
               overlay={menuCategory}
@@ -293,7 +293,7 @@ const Statistic = () => {
                 Platform <DownOutlined />
               </div>
             </Dropdown>
-          </div>
+            </div>*/}
           <div className="px-4">
             <ChartBar
               title=""
