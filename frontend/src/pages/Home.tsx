@@ -14,14 +14,6 @@ const Home = () => {
       <Navbar name="Home" />
       <div className="p-4">
         <Link to="search" className="mb-2 flex justify-center">
-          {/* <div className="absolute bottom-0 w-full flex justify-center pb-12">
-            <div className="w-2/3 h-8 bg-white flex items-center">
-            <div className="bg-blue-900 h-full px-2 text-white leading-8 rounded-l-md truncate">
-            ค้นหา
-            </div>
-            <input className="" type="text" />
-            </div>
-          </div> */}
           <img src={Search} alt="checking" />
         </Link>
 
