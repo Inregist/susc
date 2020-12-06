@@ -14,10 +14,6 @@ const Search = () => {
   const [noResultModal, setNoResultModal] = useState(false);
 
   const onFinish = ({ name, bank, phone }) => {
-    if (name === "แอบ") history.push("/search-result");
-    else setNoResultModal(true);
-    return;
-
     if (!name && !bank && !phone) {
       message.error({
         content: "กรุณากรอกอย่างน้อย 1 ช่อง",
@@ -27,17 +23,20 @@ const Search = () => {
       return;
     }
 
-    axios({
-      url: "https://susc-api.herokuapp.com/search",
-      method: "post",
-      data: {
-        name,
-        bank,
-        phone,
-      },
-    }).then((res) => {
-      console.log(res?.data);
-    });
+    if (name === "แอบ") history.push("/search-result");
+    else setNoResultModal(true);
+
+    // axios({
+    //   url: "https://susc-api.herokuapp.com/search",
+    //   method: "post",
+    //   data: {
+    //     name,
+    //     bank,
+    //     phone,
+    //   },
+    // }).then((res) => {
+    //   console.log(res?.data);
+    // });
   };
 
   return (
