@@ -273,8 +273,8 @@ const Statistic = () => {
                 setPieDisplay(e.target.value);
               }}
             >
-              <Radio.Button value="cat">Category</Radio.Button>
-              <Radio.Button value="plat">Platform</Radio.Button>
+              <Radio.Button value="cat">ประเภทสินค้า</Radio.Button>
+              <Radio.Button value="plat">แพลตฟอร์ม</Radio.Button>
             </Radio.Group>
           </div>
           <ChartPie
@@ -313,28 +313,33 @@ const Statistic = () => {
           </div>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Report" key="2">
-        <div className="flex justify-around items-center mt-10 h-12">
-            <Dropdown
-              visible={showCatGraph}
-              onVisibleChange={setShowCatGraph}
-              overlay={menuCategory}
-              placement="bottomCenter"
-            >
-              <div>
-                Category <DownOutlined />
-              </div>
-            </Dropdown>
-            <Dropdown
-              visible={showPlatformGraph}
-              overlay={menuPlatform}
-              onVisibleChange={setShowPlatformGraph}
-              placement="bottomCenter"
-            >
-              <div>
-                Platform <DownOutlined />
-              </div>
-            </Dropdown>
-            </div>
+          <div className="flex justify-around items-center py-8">
+              <Dropdown
+                visible={showCatGraph}
+                onVisibleChange={setShowCatGraph}
+                overlay={menuCategory}
+                placement="bottomCenter"
+              >
+                <div>
+                  ประเภทสินค้า <DownOutlined />
+                </div>
+              </Dropdown>
+              <Dropdown
+                visible={showPlatformGraph}
+                overlay={menuPlatform}
+                onVisibleChange={setShowPlatformGraph}
+                placement="bottomCenter"
+              >
+                <div>
+                  แพลตฟอร์ม <DownOutlined />
+                </div>
+              </Dropdown>
+          </div>
+          <div className="grid grid-cols-6 gap-1">
+            <div className="col-start-2 col-end-3"> ชื่อ </div>
+            <div className="col-end-7 col-span-2"> จำนวนครั้งที่ถูกแจ้ง </div>
+          </div>
+          <hr></hr>
           <List
             style={{ padding: 30 }}
             itemLayout="horizontal"
