@@ -5,7 +5,7 @@ import { DownOutlined } from "@ant-design/icons";
 import Column from "antd/lib/table/Column";
 import CaseDetailModal from "../components/CaseDetailModal";
 import { DataContext } from "../DataContext";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
 export type CaseType = {
   key: string;
@@ -41,10 +41,9 @@ export type CaseType = {
 };
 
 const Main = () => {
-
-  const history = useHistory()
+  const history = useHistory();
   useEffect(() => {
-    if (!localStorage.getItem("isLogin")) history.push('/login');
+    if (!localStorage.getItem("isLogin")) history.push("/login");
   });
 
   const [show, setShow] = useState(false);
@@ -59,8 +58,8 @@ const Main = () => {
   const [selectedOperationgStatus, setSelectedOperationgStatus] = useState([
     { name: "รับแจ้งคดีแล้ว", check: true },
     { name: "กำลังตรวจสอบ", check: true },
-    { name: "ตรวจสอบเสร็จสิ้น", check: false },
-    { name: "ปิดคดี", check: false },
+    { name: "ตรวจสอบเสร็จสิ้น", check: true },
+    { name: "ปิดคดี", check: true },
   ]);
 
   const menuOperatingStatus = (

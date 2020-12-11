@@ -132,14 +132,14 @@ const UpdateCaseModal = ({
                 <Item name="goods">
                   <Input disabled />
                 </Item>
-                <p className="mt-2 mb-0">ประเภทสินค้า</p>
+                {/* <p className="mt-2 mb-0">ประเภทสินค้า</p>
                 <Select style={{ width: 560 }}>
                   <Option value="1">เครื่องสำอาง</Option>
                   <Option value="2">เสื้อผ้า</Option>
                   <Option value="3">เครื่องใช้ไฟฟ้า</Option>
                   <Option value="4">ของใช้ในครัว</Option>
                   <Option value="5">ขอใช้ในสำนักงาน</Option>
-                </Select>
+                </Select> */}
                 <p className="mt-2 mb-0">ช่องทางการซื้อ</p>
                 <Item name="platform">
                   <Input />
@@ -149,7 +149,7 @@ const UpdateCaseModal = ({
                   <Input />
                 </Item>
                 <p className="mt-2 mb-0">ยอดการโอน</p>
-                <Input />
+                <Input value={1500}/>
                 <p className="mt-2 mb-0">รายละเอียดการโอน</p>
                 <Input
                   disabled

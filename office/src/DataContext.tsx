@@ -67,42 +67,57 @@ const DataProvider = ({ children }) => {
     ],
     platform: "",
   });
+
+  const generateCase = (i) => {
+    const operatingStatus = {
+      0: "รับแจ้งคดีแล้ว",
+      1: "กำลังตรวจสอบ",
+      2: "ตรวจสอบเสร็จสิ้น",
+      3: "ปิดคดี",
+    }[Math.floor(Math.random() * 4)];
+
+    const result = { 0: "กำลังดำเนินการ", 1: "ฉ้อโกง", 2: "บริสุทธิ์" }[
+      Math.floor(Math.random() * 3)
+    ];
+
+    return {
+      key: `${i}`,
+      caseID: `C${i.toString().padStart(3, "0")}`,
+      operatingStatus:
+        result !== "กำลังดำเนินการ"
+          ? {
+              0: "ตรวจสอบเสร็จสิ้น",
+              1: "ปิดคดี",
+            }[Math.floor(Math.random() * 2)]
+          : operatingStatus,
+      goods: ["กางเกง", "เสื้อ", "จักรยาน", "รถถัง", "ตู้เย็น"][Math.floor(Math.random() * 5)],
+      reportDate: "12.08.2020",
+      staff: { 0: "ทำงานหนักมาก", 1: "ฉันไม่ทำงาน" }[
+        Math.floor(Math.random() * 2)
+      ],
+      result,
+      reporter: {
+        name: "นางสาวเกด ศิริน",
+        citizenID: "1124573808888",
+        phone: "0854566548",
+        email: "kate@kate.com",
+      },
+      suspect: {
+        name: "นายกัน ดารา",
+        citizenID: "1187648889435",
+        phone: "0854568528",
+        email: "kan@kan.com",
+        bank: "12-123-1254-6",
+      },
+      mediation: [],
+      platform: "lazada",
+    };
+  };
+
   const [data, setData] = useState<CaseType[]>(
     Array(20)
       .fill(0)
-      .map((d, i) => ({
-        key: `${i}`,
-        caseID: `C${i.toString().padStart(3, "0")}`,
-        operatingStatus: {
-          0: "รับแจ้งคดีแล้ว",
-          1: "กำลังตรวจสอบ",
-          2: "ตรวจสอบเสร็จสิ้น",
-          3: "ปิดคดี",
-        }[Math.floor(Math.random() * 4)],
-        goods: "กางเกง",
-        reportDate: "12.08.2020",
-        staff: { 0: "ทำงานหนักมาก", 1: "ฉันไม่ทำงาน" }[
-          Math.floor(Math.random() * 2)
-        ],
-        result: { 0: "กำลังดำเนินการ", 1: "ฉ้อโกง", 2: "บริสุทธิ์" }[
-          Math.floor(Math.random() * 3)
-        ],
-        reporter: {
-          name: "นางสาวเกด ศิริน",
-          citizenID: "1124573808888",
-          phone: "0854566548",
-          email: "kate@kate.com",
-        },
-        suspect: {
-          name: "นายกัน ดารา",
-          citizenID: "1187648889435",
-          phone: "0854568528",
-          email: "kan@kan.com",
-          bank: "12-123-1254-6",
-        },
-        mediation: [],
-        platform: "lazada",
-      }))
+      .map((d, i) => generateCase(i))
   );
 
   return (
