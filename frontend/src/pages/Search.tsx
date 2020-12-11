@@ -5,12 +5,12 @@ import SearchSub from "../assets/Search-sub.png";
 import { useForm } from "antd/lib/form/Form";
 import { useHistory } from "react-router-dom";
 
-import axios from "axios";
+// import axios from "axios";
 
 const Search = () => {
   const [form] = useForm();
   const history = useHistory();
-
+  message.config({ maxCount: 1 });
   const [noResultModal, setNoResultModal] = useState(false);
 
   const onFinish = ({ name, bank, phone }) => {
@@ -25,18 +25,6 @@ const Search = () => {
 
     if (name === "แอบ") history.push("/search-result");
     else setNoResultModal(true);
-
-    // axios({
-    //   url: "https://susc-api.herokuapp.com/search",
-    //   method: "post",
-    //   data: {
-    //     name,
-    //     bank,
-    //     phone,
-    //   },
-    // }).then((res) => {
-    //   console.log(res?.data);
-    // });
   };
 
   return (
