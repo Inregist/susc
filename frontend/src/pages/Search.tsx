@@ -31,7 +31,7 @@ const Search = () => {
     <div className="h-screen relative">
       <title>ค้นหา</title>
       {noResultModal && <NoResultModal setVisible={setNoResultModal} />}
-      <Navbar name="Search" />
+      <Navbar name="ตรวจสอบผู้ขาย" />
       <div className="p-8">
         <div className="m-16 flex justify-center">
           <img src={SearchSub} alt="checking" />
