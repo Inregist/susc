@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 const SearchResultCase = () => {
   return (
     <div className="min-h-screen">
+      <title>ค้นหา</title>
       <Navbar name="รายละเอียดคดี" />
       <div className="px-8 py-8 m-6 bg-white rounded-lg">
         <Field name="ชื่อผู้ขาย" value="นางแอบบ์ มีพิรุธ" />
