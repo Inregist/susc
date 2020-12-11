@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Pie, Bar } from "react-chartjs-2";
-import { Menu, Dropdown, Checkbox, Tabs, Button, Radio, List } from "antd";
+import { Menu, Dropdown, Checkbox, Tabs, Radio, List } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 const Statistic = () => {
   const [showCatGraph, setShowCatGraph] = useState(false);
   const [showPlatformGraph, setShowPlatformGraph] = useState(false);
-  const [showCatReport, setShowCatReport] = useState(false);
-  const [showPlatformReport, setShowPlatformReport] = useState(false);
   const [pieDisplay, setPieDisplay] = useState("cat");
   const [barDisplay, setBarDisplay] = useState("month");
 
@@ -17,31 +15,31 @@ const Statistic = () => {
       title: "นางป๋อง แป๋ง",
       category: "เครื่องสำอาง",
       platform: "Twitter",
-      count: 200
+      count: 200,
     },
     {
       title: "นางสาวเกด ดาดาจิ",
       category: "เสื้อผ้า",
       platform: "Twitter",
-      count: 150
+      count: 150,
     },
     {
       title: "นางสาวน้ำปูน จิจิดา",
       category: "เสื้อผ้า",
       platform: "eBay",
-      count: 300
+      count: 300,
     },
     {
       title: "นายทีปจิระ งามภักดี",
       category: "เครื่องใช้ไฟฟ้า",
       platform: "eBay",
-      count: 250
+      count: 250,
     },
     {
       title: "นายกัน สถาพร",
       category: "เครื่องสำอาง",
       platform: "Twitter",
-      count: 100
+      count: 100,
     },
   ];
 
@@ -314,26 +312,26 @@ const Statistic = () => {
         </Tabs.TabPane>
         <Tabs.TabPane tab="Report" key="2">
           <div className="flex justify-around items-center py-8">
-              <Dropdown
-                visible={showCatGraph}
-                onVisibleChange={setShowCatGraph}
-                overlay={menuCategory}
-                placement="bottomCenter"
-              >
-                <div>
-                  ประเภทสินค้า <DownOutlined />
-                </div>
-              </Dropdown>
-              <Dropdown
-                visible={showPlatformGraph}
-                overlay={menuPlatform}
-                onVisibleChange={setShowPlatformGraph}
-                placement="bottomCenter"
-              >
-                <div>
-                  แพลตฟอร์ม <DownOutlined />
-                </div>
-              </Dropdown>
+            <Dropdown
+              visible={showCatGraph}
+              onVisibleChange={setShowCatGraph}
+              overlay={menuCategory}
+              placement="bottomCenter"
+            >
+              <div>
+                ประเภทสินค้า <DownOutlined />
+              </div>
+            </Dropdown>
+            <Dropdown
+              visible={showPlatformGraph}
+              overlay={menuPlatform}
+              onVisibleChange={setShowPlatformGraph}
+              placement="bottomCenter"
+            >
+              <div>
+                แพลตฟอร์ม <DownOutlined />
+              </div>
+            </Dropdown>
           </div>
           <div className="grid grid-cols-6 gap-1">
             <div className="col-start-2 col-end-3"> ชื่อ </div>
@@ -343,16 +341,19 @@ const Statistic = () => {
           <List
             style={{ padding: 30 }}
             itemLayout="horizontal"
-            dataSource={dataMock.filter((d) =>
-              selectedPlatForm
-                .filter((o) => o.check)
-                .map((o) => o.name)
-                .includes(d.platform)
-              ).filter((d) => 
-              selectedCat
-                .filter((o) => o.check)
-                .map((o) => o.name)
-                .includes(d.category))}
+            dataSource={dataMock
+              .filter((d) =>
+                selectedPlatForm
+                  .filter((o) => o.check)
+                  .map((o) => o.name)
+                  .includes(d.platform)
+              )
+              .filter((d) =>
+                selectedCat
+                  .filter((o) => o.check)
+                  .map((o) => o.name)
+                  .includes(d.category)
+              )}
             renderItem={(item) => (
               <List.Item>
                 <List.Item.Meta title={item.title} />
@@ -370,7 +371,8 @@ const ChartPie = ({ chartData, title }) => {
   return (
     <div className="chart">
       <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap');
+        @import
+        url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap');
       </style>
       <Pie
         data={chartData}
@@ -385,7 +387,7 @@ const ChartPie = ({ chartData, title }) => {
             labels: {
               boxWidth: 20,
               fontSize: 10,
-              fontFamily: "Kanit"
+              fontFamily: "Kanit",
             },
           },
         }}
@@ -398,7 +400,8 @@ const ChartBar = ({ chartData, title }) => {
   return (
     <div className="chart">
       <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap');
+        @import
+        url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap');
       </style>
       <Bar
         data={chartData}
@@ -417,9 +420,9 @@ const ChartBar = ({ chartData, title }) => {
             },
           },
           scales: {
-            yAxes : [{ticks: {fontFamily: "Kanit", fontSize: 10}}],
-            xAxes : [{ticks: {fontFamily: "Kanit", fontSize: 10}}]
-          }
+            yAxes: [{ ticks: { fontFamily: "Kanit", fontSize: 10 } }],
+            xAxes: [{ ticks: { fontFamily: "Kanit", fontSize: 10 } }],
+          },
         }}
       />
     </div>
