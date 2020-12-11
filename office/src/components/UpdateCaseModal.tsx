@@ -52,6 +52,8 @@ const UpdateCaseModal = ({
           },
           suspect: {
             name: caseData.suspect.name,
+            citizenID: caseData.suspect.citizenID,
+            email: caseData.suspect.email,
             bank: caseData.suspect.bank,
           },
           goods: caseData.goods,
@@ -126,7 +128,15 @@ const UpdateCaseModal = ({
               <div className="px-12">
                 <p className="mb-0">ชื่อ-นามสกุล</p>
                 <Item name={["suspect", "name"]}>
-                  <Input disabled />
+                  <Input />
+                </Item>
+                <p className="mb-0">หมายเลขบัตรประชาชน</p>
+                <Item name={["suspect", "citizenID"]}>
+                  <Input />
+                </Item>
+                <p className="mb-0">อีเมล</p>
+                <Item name={["suspect", "email"]}>
+                  <Input />
                 </Item>
                 <p className="mt-2 mb-0">สินค้า</p>
                 <Item name="goods">
@@ -149,7 +159,7 @@ const UpdateCaseModal = ({
                   <Input />
                 </Item>
                 <p className="mt-2 mb-0">ยอดการโอน</p>
-                <Input value={1500}/>
+                <Input value={1500} />
                 <p className="mt-2 mb-0">รายละเอียดการโอน</p>
                 <Input
                   disabled
