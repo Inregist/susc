@@ -55,6 +55,7 @@ const UpdateCaseModal = ({
             citizenID: caseData.suspect.citizenID,
             email: caseData.suspect.email,
             bank: caseData.suspect.bank,
+            phone: caseData.suspect.phone,
           },
           goods: caseData.goods,
           platform: caseData.platform,
@@ -132,6 +133,10 @@ const UpdateCaseModal = ({
                 </Item>
                 <p className="mb-0">หมายเลขบัตรประชาชน</p>
                 <Item name={["suspect", "citizenID"]}>
+                  <Input />
+                </Item>
+                <p className="mb-0">เบอร์โทรศัพท์</p>
+                <Item name={["suspect", "phone"]}>
                   <Input />
                 </Item>
                 <p className="mb-0">อีเมล</p>
