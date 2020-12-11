@@ -5,7 +5,9 @@ import success from "../assets/Correct.png";
 const ReportSuccess = () => {
 
   return (
+    
     <div className="h-screen">
+      <title>ร้องทุกข์</title>
         <Navbar name="ร้องทุกข์" />
         <div className="flex flex-col items-center justify-center" style={{marginTop: "10rem"}}>
           <img className="w-24 h-24" src={success} alt="checking" />
