@@ -25,18 +25,6 @@ const Search = () => {
 
     if (name === "แอบ") history.push("/search-result");
     else setNoResultModal(true);
-
-    // axios({
-    //   url: "https://susc-api.herokuapp.com/search",
-    //   method: "post",
-    //   data: {
-    //     name,
-    //     bank,
-    //     phone,
-    //   },
-    // }).then((res) => {
-    //   console.log(res?.data);
-    // });
   };
 
   return (
