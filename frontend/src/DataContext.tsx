@@ -11,7 +11,7 @@ const WarnCase: CaseType[] = [
     goods: "ตุ๊กตาสิงโตแสนน่ารัก",
     reportDate: "10/08/2020",
     staff: "นายทำงาน หนักมาก",
-    result: "ฉ้อโกง",
+    result: "กำลังดำเนินการ",
     reporter: {
       name: "นางสาวน้ำปูน จิตตา",
       citizenID: "4495235847422",
@@ -35,7 +35,7 @@ const WarnCase: CaseType[] = [
     goods: "เครื่องดูดฝุ่น",
     reportDate: "14/07/2019",
     staff: "นายหยุด ทำงานก่อน",
-    result: "ฉ้อโกง",
+    result: "กำลังดำเนินการ",
     reporter: {
       name: "นางสาวเบญจาง คะประดิษฐ์",
       citizenID: "4002476630040",
@@ -59,7 +59,7 @@ const WarnCase: CaseType[] = [
     goods: "เสื้อลายดอกไม้สุดสวย",
     reportDate: "17/11/2020",
     staff: "นายหยุด ทำงานก่อน",
-    result: "ฉ้อโกง",
+    result: "กำลังดำเนินการ",
     reporter: {
       name: "นางสาวการะเกด ศุรางค์",
       citizenID: "8586915727150",
@@ -83,7 +83,7 @@ const WarnCase: CaseType[] = [
     goods: "ตู้เสื้อผ้าเคลื่อนที่ได้",
     reportDate: "11/09/2020",
     staff: "นายทำงาน หนักมาก",
-    result: "ฉ้อโกง",
+    result: "กำลังดำเนินการ",
     reporter: {
       name: "นายกรรณกิต พงศ์ดารา",
       citizenID: "1571481657805",
@@ -190,12 +190,23 @@ const CheatCase: CaseType[] = [
 ];
 
 const DataProvider = ({ children }) => {
-  const [result, setResult] = useState<any>({});
+  const data = [...WarnCase, ...CheatCase];
+  const [result, setResult] = useState<any>([]);
+  const [caseDetail, setCaseDetail] = useState<null | CaseType>(null);
   const [input, setInput] = useState<any>({});
 
-  console.log(WarnCase, CheatCase);
   return (
-    <DataContext.Provider value={{ result, setResult, input, setInput }}>
+    <DataContext.Provider
+      value={{
+        data,
+        result,
+        setResult,
+        input,
+        setInput,
+        caseDetail,
+        setCaseDetail,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );

@@ -2,22 +2,24 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import { Form, Button, Radio, Input, Select, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import ReportComplete from "./ReportSuccess";
-import ReportSuccess from "./ReportSuccess";
+import { useHistory } from "react-router-dom";
 
 const { TextArea } = Input;
 
 const Report = () => {
-  const getBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-  };
+  const history = useHistory();
+
+  // const getBase64 = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => resolve(reader.result);
+  //     reader.onerror = (error) => reject(error);
+  //   });
+  // };
 
   const onFinish = (values) => {
+    history.push("/report-case/success");
     console.log(values);
   };
 
@@ -127,7 +129,7 @@ const Report = () => {
             tooltip="ไม่จำเป็นต้องกรอก"
             name={["suspect", "phone"]}
           >
-            <Input placeholder="เบอร์โทรศัพท์"/>
+            <Input placeholder="เบอร์โทรศัพท์" />
           </Form.Item>
           <Form.Item
             label="เลขบัญชี"
@@ -161,19 +163,19 @@ const Report = () => {
               alignItems: "center",
             }}
           >
-              <Button
-                style={{
-                  background: "#072A4B",
-                  borderColor: "#072A4B",
-                  width: "130px",
-                  height: "46px",
-                  borderRadius: "8px",
-                }}
-                type="primary"
-                htmlType="submit"
-              >
-                <div style={{ fontSize: 16 }}>ส่งคำร้องทุกข์</div>
-              </Button>
+            <Button
+              style={{
+                background: "#072A4B",
+                borderColor: "#072A4B",
+                width: "130px",
+                height: "46px",
+                borderRadius: "8px",
+              }}
+              type="primary"
+              htmlType="submit"
+            >
+              <div style={{ fontSize: 16 }}>ส่งคำร้องทุกข์</div>
+            </Button>
           </Form.Item>
         </Form>
       </div>

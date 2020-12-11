@@ -13,6 +13,7 @@ import ReportSuccess from "./pages/ReportSuccess";
 import SearchResult from "./pages/SearchResult";
 import SearchResultCase from "./pages/SearchResultCase";
 import SearchResultDetail from "./pages/SearchResultDetail";
+import DataProvider from "./DataContext";
 
 const App = () => {
   return (
@@ -21,19 +22,29 @@ const App = () => {
         className="w-full border-l border-r border-gray-400"
         style={{ maxWidth: "450px" }}
       >
-        <Router>
-          <Switch>
-            <Route exact path="/report-case" component={Report} />
-            <Route exact path="/report-case/success" component={ReportSuccess} />
-            <Route exact path="/check-case" component={CheckCase} />
-            <Route exact path="/statistic" component={Statistic} />
-            <Route exact path="/search" component={Search} />
-            <Route exact path="/search-result" component={SearchResult} />
-            <Route exact path="/search-case" component={SearchResultCase} />
-            <Route exact path="/search-detail" component={SearchResultDetail} />
-            <Route path="/" component={Home} />
-          </Switch>
-        </Router>
+        <DataProvider>
+          <Router>
+            <Switch>
+              <Route exact path="/report-case" component={Report} />
+              <Route
+                exact
+                path="/report-case/success"
+                component={ReportSuccess}
+              />
+              <Route exact path="/check-case" component={CheckCase} />
+              <Route exact path="/statistic" component={Statistic} />
+              <Route exact path="/search" component={Search} />
+              <Route exact path="/search-result" component={SearchResult} />
+              <Route exact path="/search-case" component={SearchResultCase} />
+              <Route
+                exact
+                path="/search-detail"
+                component={SearchResultDetail}
+              />
+              <Route path="/" component={Home} />
+            </Switch>
+          </Router>
+        </DataProvider>
       </div>
     </div>
   );

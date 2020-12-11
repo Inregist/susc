@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, message } from "antd";
 import Navbar from "../components/Navbar";
 import SearchSub from "../assets/Search-sub.png";
 import { useForm } from "antd/lib/form/Form";
 import { useHistory } from "react-router-dom";
+import { DataContext } from "../DataContext";
+import { CaseType } from "../components/CaseType";
 
 // import axios from "axios";
 
@@ -12,6 +14,8 @@ const Search = () => {
   const history = useHistory();
   message.config({ maxCount: 1 });
   const [noResultModal, setNoResultModal] = useState(false);
+
+  const { data, setResult, setInput } = useContext(DataContext);
 
   const onFinish = ({ name, bank, phone }) => {
     if (!name && !bank && !phone) {
@@ -23,8 +27,29 @@ const Search = () => {
       return;
     }
 
-    if (name === "แอบ") history.push("/search-result");
-    else setNoResultModal(true);
+    const tmpResult = data.filter((d: CaseType) => {
+      d.suspect.phone.split("-").join("");
+      return (
+        (name && d.suspect.name.includes(name)) ||
+        d.suspect.phone.split("-").join("") ===
+          (phone || "").split("-").join("") ||
+        d.suspect.bank.split("-").join("") === (bank || "").split("-").join("")
+      );
+    });
+    console.log(tmpResult);
+
+    if (tmpResult.length === 0) {
+      setNoResultModal(true);
+      return;
+    }
+
+    setInput({
+      name,
+      phone,
+      bank,
+    });
+    setResult(tmpResult);
+    history.push("/search-result");
   };
 
   return (
