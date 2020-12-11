@@ -30,7 +30,7 @@ const Report = () => {
           <div className="mb-4 font-semibold" style={{ fontSize: 16 }}>
             ข้อมูลผู้ร้องทุกข์
           </div>
-          <Form.Item label="คำนำหน้าชื่อ" name={["reporter", "title"]} required>
+          <Form.Item label="คำนำหน้าชื่อ" name={["reporter", "title"]} required rules={[{ required: true, message: "กรุณาระบุคำนำหน้า" }]}>
             <Radio.Group>
               <Radio.Button value="1">นาย</Radio.Button>
               <Radio.Button value="2">นาง</Radio.Button>
@@ -42,6 +42,7 @@ const Report = () => {
             required
             tooltip="มีนามสกุลข้างล่าง"
             name={["reporter", "fname"]}
+            rules={[{ required: true, message: "กรุณาระบุชื่อผู้ร้องทุกข์" }]}
           >
             <Input placeholder="ชื่อ" />
           </Form.Item>
@@ -50,6 +51,7 @@ const Report = () => {
             required
             tooltip="นามสกุลตรงนี้"
             name={["reporter", "lname"]}
+            rules={[{ required: true, message: "กรุณาระบุนามสกุลผู้ร้องทุกข์" }]}
           >
             <Input placeholder="นามสกุล" />
           </Form.Item>
@@ -66,6 +68,7 @@ const Report = () => {
             required
             tooltip="อีเมล์ตรงนี้"
             name={["reporter", "email"]}
+            rules={[{ required: true, message: "กรุณาระบุอีเมล์" }]}
           >
             <Input placeholder="อีเมล์" />
           </Form.Item>
@@ -73,7 +76,7 @@ const Report = () => {
           <div className="mt-16 mb-4 font-semibold" style={{ fontSize: 16 }}>
             ข้อมูลผู้ขาย
           </div>
-          <Form.Item label="คำนำหน้าชื่อ" name={["suspect", "title"]} required>
+          <Form.Item label="คำนำหน้าชื่อ" name={["suspect", "title"]} required rules={[{ required: true, message: "กรุณาระบุคำนำหน้า" }]}>
             <Radio.Group>
               <Radio.Button value="1">นาย</Radio.Button>
               <Radio.Button value="2">นาง</Radio.Button>
@@ -85,6 +88,7 @@ const Report = () => {
             required
             tooltip="มีนามสกุลข้างล่าง"
             name={["suspect", "fname"]}
+            rules={[{ required: true, message: "กรุณาระบุชื่อผู้ขาย" }]}
           >
             <Input placeholder="ชื่อ" />
           </Form.Item>
@@ -93,6 +97,7 @@ const Report = () => {
             required
             tooltip="นามสกุลตรงนี้"
             name={["suspect", "lname"]}
+            rules={[{ required: true, message: "กรุณาระบุนามสกุลผู้ขาย" }]}
           >
             <Input placeholder="นามสกุล" />
           </Form.Item>
@@ -101,6 +106,7 @@ const Report = () => {
             required
             tooltip="สินค้าตรงนี้"
             name="product"
+            rules={[{ required: true, message: "กรุณาระบุสินค้าที่ซื้อ" }]}
           >
             <Input placeholder="สินค้า" />
           </Form.Item>
@@ -136,10 +142,10 @@ const Report = () => {
           >
             <Input placeholder="เลขบัญชี" />
           </Form.Item>
-          <Form.Item label="ยอดโอน" required name="price">
+          <Form.Item label="ยอดโอน" required name="price" rules={[{ required: true, message: "กรุณาระบุยอดที่โอน" }]}>
             <Input placeholder="ยอดโอน" />
           </Form.Item>
-          <Form.Item label="หลักฐานการโกง" required name="evidence">
+          <Form.Item label="หลักฐานการโกง" required name="evidence" rules={[{ required: true, message: "กรุณาอัพโหลดหลักฐาน" }]}>
             <Upload listType="picture-card" fileList={[]}>
               <div>
                 <PlusOutlined />
@@ -147,7 +153,7 @@ const Report = () => {
               </div>
             </Upload>
           </Form.Item>
-          <Form.Item label="รายละเอียดการโกง" required name="detail">
+          <Form.Item label="รายละเอียดการโกง" required name="detail" rules={[{ required: true, message: "กรุณาระบุรายละเอียดเพิ่มเติม" }]}>
             <TextArea
               placeholder="รายละเอียดการโกง"
               showCount
