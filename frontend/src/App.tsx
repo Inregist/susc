@@ -9,6 +9,7 @@ import Search from "./pages/Search";
 import Statistic from "./pages/Statistic";
 import CheckCase from "./pages/CheckCase";
 import Report from "./pages/Report";
+import ReportSuccess from "./pages/ReportSuccess";
 import SearchResult from "./pages/SearchResult";
 import SearchResultCase from "./pages/SearchResultCase";
 import SearchResultDetail from "./pages/SearchResultDetail";
@@ -23,6 +24,7 @@ const App = () => {
         <Router>
           <Switch>
             <Route exact path="/report-case" component={Report} />
+            <Route exact path="/report-case/success" component={ReportSuccess} />
             <Route exact path="/check-case" component={CheckCase} />
             <Route exact path="/statistic" component={Statistic} />
             <Route exact path="/search" component={Search} />
