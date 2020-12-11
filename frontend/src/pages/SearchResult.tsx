@@ -7,6 +7,7 @@ const SearchResult = () => {
 
   return (
     <div className="min-h-screen">
+      <title>ค้นหา</title>
       <Navbar name="รายการที่ค้นหา" />
       <div className="p-8">
         <div className="px-4 py-2 mb-8 w-full rounded-lg shadow-md">
