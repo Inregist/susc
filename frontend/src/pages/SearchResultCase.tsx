@@ -7,6 +7,7 @@ const SearchResultCase = () => {
   const status = "พบประวัติการแจ้ง";
   return (
     <div className="min-h-screen">
+      <title>ค้นหา</title>
       <Navbar name="รายการคดี" />
       <div className="p-8">
         <div className="px-4 py-4 mb-8 w-full rounded-lg shadow-md bg-white">
