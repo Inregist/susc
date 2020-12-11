@@ -1,3 +1,0 @@
-type Case ={
-  id: number,
-}
